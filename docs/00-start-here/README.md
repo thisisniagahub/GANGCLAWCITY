@@ -41,7 +41,7 @@ NiagaBot Agents (Running 24/7)
 
 **Production Setup:**
 - ✅ **WSS URL:** `wss://operator.gangniaga.my`
-- ✅ **Auth Token:** `053adc82f8d2600b32c397c12f3517745b76a4deabf926b9`
+- ✅ **Auth Token:** `<GATEWAY_TOKEN>`
 - ✅ **Session Key:** `agent:main:main`
 - ✅ **CORS:** Pre-configured for Vercel
 - ✅ **Zero Downtime:** NiagaBot continues running
@@ -95,7 +95,7 @@ Real-time monitoring of all NiagaBot agents with KPIs, alerts, and human oversig
 
 ### 🔗 Production OpenClaw Integration
 - **WSS Gateway:** `wss://operator.gangniaga.my`
-- **Token Auth:** `053adc82f8d2600b32c397c12f3517745b76a4deabf926b9`
+- **Token Auth:** `<GATEWAY_TOKEN>`
 - **Session Key:** `agent:main:main`
 - **CORS Enabled:** Vercel domains pre-configured
 - **Zero Downtime:** NiagaBot continues running
@@ -186,7 +186,7 @@ cd agent-town && pnpm dev
 ```env
 # Production Gateway
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 VITE_MOCK=false
 ```
@@ -227,7 +227,7 @@ cd agent-town && vercel --prod
 **Environment Variables on Vercel:**
 ```
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 VITE_MOCK=false
 ```
@@ -236,7 +236,7 @@ VITE_MOCK=false
 
 **Production Gateway Already Configured:**
 - ✅ **URL:** `wss://operator.gangniaga.my`
-- ✅ **Token:** `053adc82f8d2600b32c397c12f3517745b76a4deabf926b9`
+- ✅ **Token:** `<GATEWAY_TOKEN>`
 - ✅ **Session Key:** `agent:main:main`
 - ✅ **CORS:** Allows Vercel domains
 - ✅ **Rate Limiting:** 10 requests/minute

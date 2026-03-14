@@ -116,7 +116,7 @@ openclaw gateway restart
 ```bash
 # Replace old token with placeholder
 # In all .md files, replace:
-053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+<GATEWAY_TOKEN>
 # With:
 <GATEWAY_TOKEN>
 ```

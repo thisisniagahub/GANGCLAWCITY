@@ -175,7 +175,7 @@ GANGCLAWCITY/
 
 **Token Exposed:**
 ```
-053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+<GATEWAY_TOKEN>
 ```
 
 **Locations:**

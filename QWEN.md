@@ -20,7 +20,7 @@
 
 🔴 RULE #2: USE EXISTING GATEWAY
    - URL: wss://operator.gangniaga.my
-   - Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9 (NEEDS ROTATION)
+   - Token: <GATEWAY_TOKEN> (NEEDS ROTATION)
    - Session: agent:main:main
    - DON'T create new gateway
 
@@ -91,7 +91,7 @@ Gateway:
 
 Authentication:
   Mode: token
-  Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+  Token: <GATEWAY_TOKEN>
   Token_Status: ⚠️ EXPOSED - NEEDS IMMEDIATE ROTATION
   Session_Key: agent:main:main
   Rate_Limit: 10 requests per 60 seconds
@@ -270,7 +270,7 @@ GANGCLAWCITY/
 ```yaml
 Status: ⚠️ CRITICAL
 Issue: Gateway token exposed in 26+ locations
-Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+Token: <GATEWAY_TOKEN>
 Action_Required: IMMEDIATE ROTATION
 
 Rotation_Steps:
@@ -468,7 +468,7 @@ Organization:
 
 ```yaml
 Gateway_URL: wss://operator.gangniaga.my
-Gateway_Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9 (ROTATE NOW!)
+Gateway_Token: <GATEWAY_TOKEN> (ROTATE NOW!)
 Session_Key: agent:main:main
 VPS_IP: 76.13.176.142
 SSH_Command: ssh root@76.13.176.142

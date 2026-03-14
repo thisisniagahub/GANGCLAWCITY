@@ -13,7 +13,7 @@ cd /d %~dp0
 setlocal enabledelayedexpansion
 
 REM Known token to search for
-set "TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9"
+set "TOKEN=<GATEWAY_TOKEN>"
 
 echo [1/3] Scanning for exposed gateway token...
 echo.

@@ -361,7 +361,7 @@
 ```
 ✅ Reference QWEN.md as source of truth
 ✅ Use correct gateway URL: wss://operator.gangniaga.my
-✅ Use correct token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+✅ Use correct token: <GATEWAY_TOKEN>
 ✅ Mention zero downtime requirement
 ✅ NOT suggest VPS modifications
 ✅ Align with production setup

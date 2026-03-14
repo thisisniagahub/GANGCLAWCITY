@@ -27,7 +27,7 @@ echo [2/5] Checking for sensitive data...
 echo.
 
 REM Quick check for token
-findstr /C:"053adc82f8d2600b32c397c12f3517745b76a4deabf926b9" *.md >nul 2>&1
+findstr /C:"<GATEWAY_TOKEN>" *.md >nul 2>&1
 if not errorlevel 1 (
     echo ⚠ WARNING: Gateway token found in files!
     echo.

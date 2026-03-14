@@ -26,7 +26,7 @@ Environment: Production ✅
 **Variable 2:**
 ```
 Name: VITE_GATEWAY_TOKEN
-Value: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+Value: <GATEWAY_TOKEN>
 Environment: Production ✅
 ```
 
@@ -84,7 +84,7 @@ vercel --prod
 7. Output Directory: dist
 8. Environment Variables:
    - VITE_GATEWAY_URL=wss://operator.gangniaga.my
-   - VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+   - VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
    - VITE_SESSION_KEY=agent:main:main
    - VITE_MOCK=false
 9. Click "Deploy"
@@ -106,7 +106,7 @@ vercel --prod
 7. Output Directory: .next
 8. Environment Variables:
    - NEXT_PUBLIC_GATEWAY_URL=wss://operator.gangniaga.my
-   - NEXT_PUBLIC_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+   - NEXT_PUBLIC_GATEWAY_TOKEN=<GATEWAY_TOKEN>
    - NODE_ENV=production
 9. Click "Deploy"
 ```
@@ -206,7 +206,7 @@ Vercel Dashboard: https://vercel.com/dashboard
 
 ### **Using Existing Token:**
 ```
-✅ Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+✅ Token: <GATEWAY_TOKEN>
 ✅ This token is exposed in documentation
 ✅ For testing only
 ✅ Rotate token in production

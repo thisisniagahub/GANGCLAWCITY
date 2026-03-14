@@ -211,7 +211,7 @@ move STITCH_SKILLS_IMPLEMENTATION.md docs\99-legacy\
 
 ### **🚨 TOKEN EXPOSURE DETECTED**
 
-**Token:** `053adc82f8d2600b32c397c12f3517745b76a4deabf926b9`
+**Token:** `<GATEWAY_TOKEN>`
 
 **Found in 26+ locations:**
 - QWEN.md (7 times)
@@ -241,7 +241,7 @@ openclaw gateway restart
 
 Replace all instances of:
 ```
-053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+<GATEWAY_TOKEN>
 ```
 
 With:
@@ -474,7 +474,7 @@ git diff --cached
 # Look for: tokens, passwords, API keys
 
 # 2. Run security scan
-ripgrep "053adc82f8d2600b32c397c12f3517745b76a4deabf926b9" .
+ripgrep "<GATEWAY_TOKEN>" .
 # Should find NOTHING (all replaced with <GATEWAY_TOKEN>)
 
 # 3. Check .gitignore

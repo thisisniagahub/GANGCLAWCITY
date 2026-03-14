@@ -66,7 +66,7 @@
 // All apps connect to same gateway
 const gateway = {
   url: 'wss://operator.gangniaga.my',
-  token: '053adc82f8d2600b32c397c12f3517745b76a4deabf926b9',
+  token: '<GATEWAY_TOKEN>',
   session: 'agent:main:main'
 };
 ```
@@ -86,7 +86,7 @@ OpenClaw Gateway:
   
 Authentication:
   Mode: token
-  Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+  Token: <GATEWAY_TOKEN>
   Session Key: agent:main:main
   Rate Limit: 10 req/60s
   
@@ -192,10 +192,10 @@ Client → WSS → Nginx → OpenClaw → Token Validation → Access Granted
 **Token Storage:**
 ```env
 # ✅ CORRECT: Environment variable
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 
 # ❌ WRONG: Hardcoded in code
-const token = "053adc82f8d2600b32c397c12f3517745b76a4deabf926b9";
+const token = "<GATEWAY_TOKEN>";
 ```
 
 **Rate Limiting:**
@@ -439,7 +439,7 @@ docker ps
 ```env
 # Vercel Dashboard Settings
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 VITE_MOCK=false
 ```

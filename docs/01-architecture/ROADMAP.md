@@ -92,7 +92,7 @@ Phase 9: Scale & Optimize       📅 Week 3+
 **Key Findings:**
 ```
 ✅ Gateway: wss://operator.gangniaga.my (RUNNING)
-✅ Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+✅ Token: <GATEWAY_TOKEN>
 ✅ NiagaBot: Running 24/7 (6-9 days uptime)
 ✅ CORS: Enabled for Vercel
 ✅ Nginx: Ports 80, 443 (RUNNING)
@@ -115,7 +115,7 @@ Phase 9: Scale & Optimize       📅 Week 3+
 **Integration Approach:**
 ```
 ✅ Use EXISTING gateway (wss://operator.gangniaga.my)
-✅ Use EXISTING token (053adc82f8d2600b32c397c12f3517745b76a4deabf926b9)
+✅ Use EXISTING token (<GATEWAY_TOKEN>)
 ✅ ZERO changes to VPS
 ✅ ZERO downtime for NiagaBot
 ```
@@ -190,7 +190,7 @@ vercel --prod
 **Environment Variables:**
 ```env
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 VITE_MOCK=false
 ```
@@ -217,7 +217,7 @@ vercel --prod
 ```env
 NODE_ENV=production
 NEXT_PUBLIC_GATEWAY_URL=wss://operator.gangniaga.my
-NEXT_PUBLIC_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+NEXT_PUBLIC_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 ```
 
 **Expected Output:**

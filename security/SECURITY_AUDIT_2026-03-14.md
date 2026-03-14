@@ -17,7 +17,7 @@
 
 #### **Exposed Token:**
 ```
-053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+<GATEWAY_TOKEN>
 ```
 
 #### **Files Containing Exposed Token:**
@@ -78,7 +78,7 @@ openclaw config set gateway.auth.token <NEW_SECURE_TOKEN>
 
 ```typescript
 // ❌ BEFORE (INSECURE)
-const token = "053adc82f8d2600b32c397c12f3517745b76a4deabf926b9";
+const token = "<GATEWAY_TOKEN>";
 
 // ✅ AFTER (SECURE)
 const token = import.meta.env.VITE_GATEWAY_TOKEN;

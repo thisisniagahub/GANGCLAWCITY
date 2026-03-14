@@ -16,7 +16,7 @@ pause
 
 cd /d %~dp0
 
-set "OLD_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9"
+set "OLD_TOKEN=<GATEWAY_TOKEN>"
 set "NEW_TOKEN=<GATEWAY_TOKEN>"
 
 echo.
@@ -51,12 +51,12 @@ echo.
 echo After rotating token on VPS, do this:
 echo.
 echo 1. Open each file listed above
-echo 2. Find: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+echo 2. Find: <GATEWAY_TOKEN>
 echo 3. Replace with: ^<GATEWAY_TOKEN^>
 echo 4. Save file
 echo.
 echo OR use PowerShell command:
-echo (Get-Content file.md).Replace('053adc82f8d2600b32c397c12f3517745b76a4deabf926b9', '^<GATEWAY_TOKEN^>') | Set-Content file.md
+echo (Get-Content file.md).Replace('<GATEWAY_TOKEN>', '^<GATEWAY_TOKEN^>') | Set-Content file.md
 echo.
 echo Files to update:
 echo   - QWEN.md

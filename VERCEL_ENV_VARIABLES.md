@@ -23,7 +23,7 @@
 ```env
 # Gateway Connection
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 
 # App Settings
@@ -36,7 +36,7 @@ VITE_APP_VERSION=1.0.0
 ```env
 # Same as production for testing
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 VITE_MOCK=false
 ```
@@ -45,7 +45,7 @@ VITE_MOCK=false
 ```env
 # Local testing
 VITE_GATEWAY_URL=ws://localhost:18789
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 VITE_MOCK=false
 ```

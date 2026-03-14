@@ -41,7 +41,7 @@
 ```yaml
 Gateway:
   URL: wss://operator.gangniaga.my
-  Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+  Token: <GATEWAY_TOKEN>
   Session: agent:main:main
   Auth: token-based
   Rate Limit: 10 req/60s
@@ -94,7 +94,7 @@ Reference Files:
 ❌ NEVER suggest changing VPS configuration
 
 ✅ ALWAYS use existing gateway: wss://operator.gangniaga.my
-✅ ALWAYS use existing token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+✅ ALWAYS use existing token: <GATEWAY_TOKEN>
 ✅ ALWAYS respect zero downtime requirement
 ```
 
@@ -129,7 +129,7 @@ Before ANY suggestion:
 CORRECT Response:
 "The production gateway is already configured:
 - URL: wss://operator.gangniaga.my
-- Token: 053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+- Token: <GATEWAY_TOKEN>
 - Session: agent:main:main
 
 No changes needed to VPS. Gateway is running and ready."
@@ -148,7 +148,7 @@ CORRECT Response:
 1. cd openclaw-office && vercel --prod
 2. Set environment variables:
    VITE_GATEWAY_URL=wss://operator.gangniaga.my
-   VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+   VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 3. Test connection
 
 Backend (VPS) already running - no changes needed."
@@ -319,7 +319,7 @@ interface GatewayConfig {
 
 const config: GatewayConfig = {
   url: 'wss://operator.gangniaga.my',
-  token: '053adc82f8d2600b32c397c12f3517745b76a4deabf926b9',
+  token: '<GATEWAY_TOKEN>',
   sessionKey: 'agent:main:main'
 };
 
@@ -333,7 +333,7 @@ const token = 'random-token';
 ```env
 # ✅ GOOD: Consistent naming
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 
 # ❌ BAD: Inconsistent
@@ -484,7 +484,7 @@ Use the production gateway that's already running:
 
 1. Create .env.local in openclaw-office:
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 VITE_SESSION_KEY=agent:main:main
 
 2. Restart dev server:
@@ -525,7 +525,7 @@ cd agent-town && vercel --prod
 
 3. Set environment variables on Vercel:
 VITE_GATEWAY_URL=wss://operator.gangniaga.my
-VITE_GATEWAY_TOKEN=053adc82f8d2600b32c397c12f3517745b76a4deabf926b9
+VITE_GATEWAY_TOKEN=<GATEWAY_TOKEN>
 
 4. Test deployment - should connect to existing gateway
 
