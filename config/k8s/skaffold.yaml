@@ -1,0 +1,190 @@
+apiVersion: skaffold/v4beta12
+kind: Config
+metadata:
+  name: gangclawcity-platform
+  description: Unified deployment for all GANGCLAWCITY services
+
+# Build configuration for all 5 services
+build:
+  local:
+    push: false
+    tryImportMissing: true
+  artifacts:
+    # 1. Landing Page (Marketing)
+    - image: gangclawcity/landing-page
+      context: ./landing-page
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.html'
+            dest: /usr/share/nginx/html/
+          - src: '*.css'
+            dest: /usr/share/nginx/html/
+          - src: '*.js'
+            dest: /usr/share/nginx/html/
+
+    # 2. Agent Town (Interactive Demo)
+    - image: gangclawcity/agent-town
+      context: ./agent-town
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.tsx'
+            dest: /app/
+          - src: '**/*.ts'
+            dest: /app/
+
+    # 3. OpenClaw Office (Dashboard)
+    - image: gangclawcity/openclaw-office
+      context: ./openclaw-office
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*'
+            dest: /app/src/
+
+    # 4. AI Town (Experimental)
+    - image: gangclawcity/ai-town
+      context: ./ai-town
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*'
+            dest: /app/src/
+          - src: 'convex/**/*'
+            dest: /app/convex/
+
+    # 5. Star Office UI (Research)
+    - image: gangclawcity/star-office-ui
+      context: ./Star-Office-UI
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'backend/**/*'
+            dest: /app/backend/
+          - src: 'frontend/**/*'
+            dest: /app/frontend/
+
+# Deploy using Kubernetes manifests
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*.yaml
+
+# Port forwarding for local development
+portForward:
+  # Landing Page
+  - resourceType: service
+    resourceName: landing-page
+    port: 80
+    localPort: 8080
+    address: 127.0.0.1
+
+  # Agent Town
+  - resourceType: service
+    resourceName: agent-town
+    port: 3000
+    localPort: 3000
+    address: 127.0.0.1
+
+  # OpenClaw Office
+  - resourceType: service
+    resourceName: openclaw-office
+    port: 80
+    localPort: 5180
+    address: 127.0.0.1
+
+  # AI Town
+  - resourceType: service
+    resourceName: ai-town
+    port: 80
+    localPort: 5173
+    address: 127.0.0.1
+
+  # Star Office UI
+  - resourceType: service
+    resourceName: star-office-ui
+    port: 80
+    localPort: 19000
+    address: 127.0.0.1
+
+# Profiles for different deployment scenarios
+profiles:
+  # Development: All services with hot-reload
+  - name: dev
+    activation:
+      - command: dev
+    build:
+      local:
+        push: false
+      artifacts:
+        - image: gangclawcity/landing-page
+        - image: gangclawcity/agent-town
+        - image: gangclawcity/openclaw-office
+        - image: gangclawcity/ai-town
+        - image: gangclawcity/star-office-ui
+
+  # Production: Selective deploy (only what's needed)
+  - name: prod
+    build:
+      local:
+        push: true
+      artifacts:
+        - image: gangclawcity/landing-page
+        - image: gangclawcity/agent-town
+        - image: gangclawcity/openclaw-office
+    deploy:
+      kubectl:
+        manifests:
+          - k8s/landing-page.yaml
+          - k8s/agent-town.yaml
+          - k8s/openclaw-office.yaml
+
+  # Landing Page Only (for testing)
+  - name: landing-only
+    build:
+      artifacts:
+        - image: gangclawcity/landing-page
+    deploy:
+      kubectl:
+        manifests:
+          - k8s/landing-page.yaml
+    portForward:
+      - resourceType: service
+        resourceName: landing-page
+        port: 80
+        localPort: 8080
+
+  # Dashboard Only (for testing)
+  - name: dashboard-only
+    build:
+      artifacts:
+        - image: gangclawcity/openclaw-office
+    deploy:
+      kubectl:
+        manifests:
+          - k8s/openclaw-office.yaml
+    portForward:
+      - resourceType: service
+        resourceName: openclaw-office
+        port: 80
+        localPort: 5180
+
+# Custom configurations
+kubectl:
+  defaultNamespace: gangclawcity
+
+# Watch patterns for hot-reload
+watch:
+  ignore:
+    - '**/node_modules/**'
+    - '**/.git/**'
+    - '**/dist/**'
+    - '**/build/**'
+    - '**/*.md'
+    - '**/.env*'

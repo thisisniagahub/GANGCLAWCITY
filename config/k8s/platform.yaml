@@ -1,0 +1,455 @@
+# GANGCLAWCITY Platform - Kubernetes Manifests
+# Deploy all services with unified configuration
+
+---
+# Namespace for GANGCLAWCITY
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gangclawcity
+  labels:
+    name: gangclawcity
+
+---
+# 1. Landing Page Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: landing-page
+  namespace: gangclawcity
+  labels:
+    app: landing-page
+    component: marketing
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: landing-page
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: landing-page
+  namespace: gangclawcity
+  labels:
+    app: landing-page
+    component: marketing
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: landing-page
+  template:
+    metadata:
+      labels:
+        app: landing-page
+    spec:
+      containers:
+        - name: landing-page
+          image: gangclawcity/landing-page
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+# 2. Agent Town Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: agent-town
+  namespace: gangclawcity
+  labels:
+    app: agent-town
+    component: demo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: http
+  selector:
+    app: agent-town
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-town
+  namespace: gangclawcity
+  labels:
+    app: agent-town
+    component: demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: agent-town
+  template:
+    metadata:
+      labels:
+        app: agent-town
+    spec:
+      containers:
+        - name: agent-town
+          image: gangclawcity/agent-town
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 15
+
+---
+# 3. OpenClaw Office Service (Dashboard)
+apiVersion: v1
+kind: Service
+metadata:
+  name: openclaw-office
+  namespace: gangclawcity
+  labels:
+    app: openclaw-office
+    component: dashboard
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: openclaw-office
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclaw-office
+  namespace: gangclawcity
+  labels:
+    app: openclaw-office
+    component: dashboard
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: openclaw-office
+  template:
+    metadata:
+      labels:
+        app: openclaw-office
+    spec:
+      containers:
+        - name: openclaw-office
+          image: gangclawcity/openclaw-office
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: VITE_GATEWAY_URL
+              value: "ws://localhost:18789"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+# 4. AI Town Service (Experimental)
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-town
+  namespace: gangclawcity
+  labels:
+    app: ai-town
+    component: lab
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 5173
+      protocol: TCP
+      name: http
+  selector:
+    app: ai-town
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-town
+  namespace: gangclawcity
+  labels:
+    app: ai-town
+    component: lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-town
+  template:
+    metadata:
+      labels:
+        app: ai-town
+    spec:
+      containers:
+        - name: ai-town
+          image: gangclawcity/ai-town
+          ports:
+            - containerPort: 5173
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: CONVEX_DEPLOYMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: ai-town-config
+                  key: CONVEX_DEPLOYMENT
+                  optional: true
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+---
+# 5. Star Office UI Service (Research)
+apiVersion: v1
+kind: Service
+metadata:
+  name: star-office-ui
+  namespace: gangclawcity
+  labels:
+    app: star-office-ui
+    component: research
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: star-office-ui
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: star-office-ui
+  namespace: gangclawcity
+  labels:
+    app: star-office-ui
+    component: research
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: star-office-ui
+  template:
+    metadata:
+      labels:
+        app: star-office-ui
+    spec:
+      containers:
+        - name: star-office-ui
+          image: gangclawcity/star-office-ui
+          ports:
+            - containerPort: 80
+          env:
+            - name: FLASK_ENV
+              value: "production"
+            - name: PORT
+              value: "80"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+# ConfigMap for AI Town
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-town-config
+  namespace: gangclawcity
+data:
+  CONVEX_DEPLOYMENT: ""
+  OLLAMA_HOST: "http://ollama:11434"
+
+---
+# Ingress for routing all services
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gangclawcity-ingress
+  namespace: gangclawcity
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: localhost
+      http:
+        paths:
+          # Landing Page (root)
+          - path: /()(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: landing-page
+                port:
+                  number: 80
+          
+          # Agent Town (/demo)
+          - path: /demo/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: agent-town
+                port:
+                  number: 3000
+          
+          # OpenClaw Office (/dashboard)
+          - path: /dashboard/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: openclaw-office
+                port:
+                  number: 80
+          
+          # AI Town (/lab)
+          - path: /lab/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-town
+                port:
+                  number: 80
+          
+          # Star Office (/research)
+          - path: /research/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: star-office-ui
+                port:
+                  number: 80
+
+---
+# HorizontalPodAutoscaler for auto-scaling
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: openclaw-office-hpa
+  namespace: gangclawcity
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: openclaw-office
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+---
+# NetworkPolicy for security
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: gangclawcity-network-policy
+  namespace: gangclawcity
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+  egress:
+    - {}

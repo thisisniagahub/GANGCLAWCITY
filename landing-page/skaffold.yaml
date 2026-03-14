@@ -1,0 +1,25 @@
+apiVersion: skaffold/v4beta12
+kind: Config
+metadata:
+  name: landing-page
+
+build:
+  artifacts:
+  - image: gangclawcity/landing-page
+    context: .
+    docker:
+      dockerfile: Dockerfile
+    sync:
+      manual:
+      - src: '*.html'
+        dest: /usr/share/nginx/html/
+      - src: '*.css'
+        dest: /usr/share/nginx/html/
+      - src: '*.js'
+        dest: /usr/share/nginx/html/
+
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
+    - k8s/service.yaml

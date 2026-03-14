@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe #2: Agent POV Scroll</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Courier New', monospace;
+      background: #06080f;
+      color: #e8eaf0;
+      line-height: 1.6;
+    }
+
+    .wireframe-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .wireframe-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 30px;
+      border: 2px dashed #e040fb;
+      border-radius: 12px;
+      background: rgba(224, 64, 251, 0.05);
+    }
+
+    .wireframe-header h1 {
+      font-size: 2rem;
+      color: #e040fb;
+      margin-bottom: 10px;
+    }
+
+    .wireframe-header p {
+      color: #8b92a8;
+      font-size: 1.1rem;
+    }
+
+    /* Concept Overview */
+    .concept-overview {
+      margin-bottom: 60px;
+      padding: 30px;
+      background: rgba(0, 229, 255, 0.05);
+      border: 2px solid #00e5ff;
+      border-radius: 12px;
+    }
+
+    .concept-overview h3 {
+      color: #00e5ff;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .concept-overview ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    .concept-overview li {
+      color: #8b92a8;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .concept-overview li::before {
+      content: '✓ ';
+      color: #00e5ff;
+    }
+
+    /* Scroll Journey Map */
+    .journey-map {
+      position: relative;
+      padding: 60px 40px;
+      background: linear-gradient(180deg, rgba(0, 229, 255, 0.05), rgba(224, 64, 251, 0.05));
+      border: 2px dashed #ffc400;
+      border-radius: 12px;
+      margin-bottom: 60px;
+    }
+
+    .journey-map h3 {
+      text-align: center;
+      color: #ffc400;
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+
+    .scroll-line {
+      position: absolute;
+      left: 50%;
+      top: 100px;
+      bottom: 60px;
+      width: 4px;
+      background: linear-gradient(180deg, #00e5ff, #e040fb, #ffc400);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .journey-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .journey-section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .journey-content {
+      width: 40%;
+      padding: 30px;
+      background: #0d1221;
+      border: 2px solid #1a1f3a;
+      border-radius: 12px;
+    }
+
+    .journey-content h4 {
+      color: #00e5ff;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .journey-content p {
+      color: #8b92a8;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .journey-visual {
+      width: 40%;
+      aspect-ratio: 16/10;
+      background: #0d1221;
+      border: 2px dashed #1a1f3a;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .journey-dot {
+      position: absolute;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      background: #00e5ff;
+      border: 4px solid #0a0e1a;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    }
+
+    /* Agent Character Design */
+    .agent-design {
+      margin-bottom: 60px;
+      padding: 40px;
+      border: 2px solid #00e676;
+      border-radius: 12px;
+      background: rgba(0, 230, 118, 0.05);
+    }
+
+    .agent-design h3 {
+      color: #00e676;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .agent-card {
+      padding: 30px;
+      background: #0d1221;
+      border: 2px solid #1a1f3a;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .agent-avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #00e5ff, #e040fb);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border: 4px solid #1a1f3a;
+    }
+
+    .agent-card h4 {
+      color: #e8eaf0;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .agent-card p {
+      color: #8b92a8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .agent-speech {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 229, 255, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid #00e5ff;
+      text-align: left;
+      font-style: italic;
+      color: #e8eaf0;
+      font-size: 0.85rem;
+    }
+
+    .agent-speech::before {
+      content: '💬 ';
+    }
+
+    /* District Sections */
+    .district-sections {
+      margin-bottom: 60px;
+      padding: 40px;
+      border: 2px solid #ffc400;
+      border-radius: 12px;
+      background: rgba(255, 196, 0, 0.05);
+    }
+
+    .district-sections h3 {
+      color: #ffc400;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .district-scroll-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 60px;
+      padding: 30px;
+      background: #0d1221;
+      border: 2px solid #1a1f3a;
+      border-radius: 12px;
+    }
+
+    .district-scroll-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .district-visual {
+      width: 50%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(224, 64, 251, 0.1));
+      border: 2px dashed #00e5ff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .district-info {
+      width: 50%;
+    }
+
+    .district-info h4 {
+      color: #00e5ff;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .district-info p {
+      color: #8b92a8;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .district-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .district-stat {
+      padding: 15px;
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid #1a1f3a;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .district-stat-value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #00e5ff;
+    }
+
+    .district-stat-label {
+      font-size: 0.75rem;
+      color: #8b92a8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 5px;
+    }
+
+    /* Parallax Effect Demo */
+    .parallax-demo {
+      margin-bottom: 60px;
+      padding: 40px;
+      border: 2px solid #e040fb;
+      border-radius: 12px;
+      background: rgba(224, 64, 251, 0.05);
+    }
+
+    .parallax-demo h3 {
+      color: #e040fb;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .parallax-layers {
+      position: relative;
+      height: 400px;
+      background: #0d1221;
+      border: 2px dashed #1a1f3a;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .layer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #8b92a8;
+    }
+
+    .layer-1 {
+      top: 20%;
+      height: 60px;
+      background: rgba(0, 229, 255, 0.1);
+      border: 2px solid #00e5ff;
+      border-radius: 8px;
+    }
+
+    .layer-2 {
+      top: 45%;
+      height: 80px;
+      background: rgba(224, 64, 251, 0.1);
+      border: 2px solid #e040fb;
+      border-radius: 8px;
+    }
+
+    .layer-3 {
+      top: 70%;
+      height: 60px;
+      background: rgba(255, 196, 0, 0.1);
+      border: 2px solid #ffc400;
+      border-radius: 8px;
+    }
+
+    .layer-label {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 0.8rem;
+      color: #5c6280;
+    }
+
+    /* Animation Notes */
+    .animation-notes {
+      margin-bottom: 60px;
+      padding: 40px;
+      border: 2px solid #00e5ff;
+      border-radius: 12px;
+      background: rgba(0, 229, 255, 0.05);
+    }
+
+    .animation-notes h3 {
+      color: #00e5ff;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .animation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .animation-item {
+      padding: 20px;
+      background: #0d1221;
+      border: 2px solid #1a1f3a;
+      border-radius: 8px;
+    }
+
+    .animation-item h4 {
+      color: #ffc400;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .animation-item p {
+      color: #8b92a8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Tech Stack */
+    .tech-stack {
+      padding: 40px;
+      border: 2px solid #00e676;
+      border-radius: 12px;
+      background: rgba(0, 230, 118, 0.05);
+    }
+
+    .tech-stack h3 {
+      color: #00e676;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .tech-item {
+      padding: 20px;
+      background: #0d1221;
+      border: 2px solid #1a1f3a;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .tech-item .icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .tech-item h4 {
+      color: #e8eaf0;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    .tech-item p {
+      color: #8b92a8;
+      font-size: 0.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .journey-section,
+      .journey-section:nth-child(even) {
+        flex-direction: column;
+      }
+
+      .journey-content,
+      .journey-visual,
+      .district-visual,
+      .district-info {
+        width: 100%;
+      }
+
+      .scroll-line {
+        display: none;
+      }
+
+      .agent-grid,
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .agent-grid,
+      .tech-grid,
+      .animation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .district-scroll-item,
+      .district-scroll-item:nth-child(even) {
+        flex-direction: column;
+      }
+
+      .district-visual,
+      .district-info {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wireframe-container">
+    
+    <!-- Wireframe Header -->
+    <div class="wireframe-header">
+      <h1>🚶 Wireframe #2: Agent POV Scroll</h1>
+      <p>Concept: Scroll through the city from an agent's perspective</p>
+    </div>
+
+    <!-- Concept Overview -->
+    <div class="concept-overview">
+      <h3>📖 How It Works:</h3>
+      <ul>
+        <li>User follows an agent character through their daily work journey</li>
+        <li>Each scroll section = different district</li>
+        <li>Parallax effects create depth (background moves slower than foreground)</li>
+        <li>Agent speech bubbles explain what they're doing</li>
+        <li>Interactive hotspots on hover (click to learn more)</li>
+        <li>Mobile: swipe left/right to switch districts</li>
+      </ul>
+    </div>
+
+    <!-- Scroll Journey Map -->
+    <div class="journey-map">
+      <h3>🗺️ Scroll Journey Map</h3>
+      
+      <div class="scroll-line"></div>
+
+      <!-- Stop 1: Hero -->
+      <div class="journey-section">
+        <div class="journey-content">
+          <h4>1. Hero: Meet Your Agent</h4>
+          <p>User selects or creates their agent character. Agent introduces itself with personality.</p>
+          <p><strong>Animation:</strong> Agent walks in from side, waves, speech bubble appears.</p>
+        </div>
+        <div class="journey-visual">
+          <div>
+            <div style="font-size: 4rem; margin-bottom: 20px;">🤖</div>
+            <p><strong>Character Select</strong></p>
+            <p>Pick your agent avatar</p>
+            <p>Name + role customization</p>
+          </div>
+        </div>
+        <div class="journey-dot"></div>
+      </div>
+
+      <!-- Stop 2: Command Tower -->
+      <div class="journey-section">
+        <div class="journey-content">
+          <h4>2. Command Tower: Overview</h4>
+          <p>Agent walks to Command Tower. Shows city overview with all 8 districts.</p>
+          <p><strong>Animation:</strong> Camera zooms out to show full city map.</p>
+        </div>
+        <div class="journey-visual">
+          <div>
+            <div style="font-size: 4rem; margin-bottom: 20px;">🗼</div>
+            <p><strong>Command Tower</strong></p>
+            <p>See everything at once</p>
+            <p>KPIs, alerts, status</p>
+          </div>
+        </div>
+        <div class="journey-dot"></div>
+      </div>
+
+      <!-- Stop 3: Districts -->
+      <div class="journey-section">
+        <div class="journey-content">
+          <h4>3. District Tour: Work Flow</h4>
+          <p>Agent visits 2-3 key districts (Commerce, Content, Automation). Shows tasks being completed.</p>
+          <p><strong>Animation:</strong> Agent walks between buildings, tasks animate.</p>
+        </div>
+        <div class="journey-visual">
+          <div>
+            <div style="font-size: 4rem; margin-bottom: 20px;">🏪</div>
+            <p><strong>Districts in Action</strong></p>
+            <p>Watch agents work</p>
+            <p>Tasks flow visually</p>
+          </div>
+        </div>
+        <div class="journey-dot"></div>
+      </div>
+
+      <!-- Stop 4: Results -->
+      <div class="journey-section">
+        <div class="journey-content">
+          <h4>4. Results: ROI Dashboard</h4>
+          <p>Agent shows end-of-day results. Tasks completed, leads generated, revenue influenced.</p>
+          <p><strong>Animation:</strong> Numbers count up, confetti effect.</p>
+        </div>
+        <div class="journey-visual">
+          <div>
+            <div style="font-size: 4rem; margin-bottom: 20px;">📊</div>
+            <p><strong>Results Dashboard</strong></p>
+            <p>Measurable outcomes</p>
+            <p>ROI tracking</p>
+          </div>
+        </div>
+        <div class="journey-dot"></div>
+      </div>
+
+      <!-- Stop 5: CTA -->
+      <div class="journey-section">
+        <div class="journey-content">
+          <h4>5. CTA: Start Your Journey</h4>
+          <p>Agent invites user to start their own city. Clear CTA with low friction.</p>
+          <p><strong>Animation:</strong> Agent waves goodbye, points to CTA button.</p>
+        </div>
+        <div class="journey-visual">
+          <div>
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎯</div>
+            <p><strong>Get Started</strong></p>
+            <p>Free trial, no card</p>
+            <p>Join 35+ pilot users</p>
+          </div>
+        </div>
+        <div class="journey-dot"></div>
+      </div>
+    </div>
+
+    <!-- Agent Character Design -->
+    <div class="agent-design">
+      <h3>🎨 Agent Character Designs</h3>
+      <div class="agent-grid">
+        <div class="agent-card">
+          <div class="agent-avatar">👨‍💼</div>
+          <h4>Azman (Commerce)</h4>
+          <p>Leads & sales specialist. Focus on revenue-generating tasks.</p>
+          <div class="agent-speech">
+            "I just closed 3 deals while you were scrolling! Want to see how?"
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-avatar">👩‍🎨</div>
+          <h4>Sarah (Content)</h4>
+          <p>Content creation queen. Blogs, social posts, videos - all automated.</p>
+          <div class="agent-speech">
+            "I wrote 10 blog posts and scheduled 50 tweets today. Easy!"
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-avatar">🤖</div>
+          <h4>Bot-9000 (Automation)</h4>
+          <p>Background task master. Cron jobs, scheduled workflows, health checks.</p>
+          <div class="agent-speech">
+            "I've been running 24/7 without coffee breaks. Efficiency: 100%"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- District Sections Example -->
+    <div class="district-sections">
+      <h3>🏙️ District Section Example (Commerce)</h3>
+      
+      <div class="district-scroll-item">
+        <div class="district-visual">
+          <div>
+            <div style="font-size: 5rem; margin-bottom: 20px;">🏪</div>
+            <p><strong>Lorong Niaga</strong></p>
+            <p>Commerce District</p>
+            <p style="color: #8b92a8; font-size: 0.9rem;">
+              Parallax Layer 1: Background buildings<br>
+              Parallax Layer 2: Walking agents<br>
+              Parallax Layer 3: Task animations
+            </p>
+          </div>
+        </div>
+        <div class="district-info">
+          <h4>Where Revenue Happens</h4>
+          <p>Watch your commerce agents research leads, reach out to prospects, and close deals - all visible in real-time.</p>
+          
+          <div class="district-stats">
+            <div class="district-stat">
+              <div class="district-stat-value">150+</div>
+              <div class="district-stat-label">Leads/Day</div>
+            </div>
+            <div class="district-stat">
+              <div class="district-stat-value">RM45k</div>
+              <div class="district-stat-label">Revenue/Month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="district-scroll-item">
+        <div class="district-visual">
+          <div>
+            <div style="font-size: 5rem; margin-bottom: 20px;">🎬</div>
+            <p><strong>Jalan Konten</strong></p>
+            <p>Content District</p>
+            <p style="color: #8b92a8; font-size: 0.9rem;">
+              Parallax Layer 1: Content studio<br>
+              Parallax Layer 2: Agents creating<br>
+              Parallax Layer 3: Publishing animation
+            </p>
+          </div>
+        </div>
+        <div class="district-info">
+          <h4>Content Factory</h4>
+          <p>From blog posts to social media, your content agents create, schedule, and publish across all platforms.</p>
+          
+          <div class="district-stats">
+            <div class="district-stat">
+              <div class="district-stat-value">50+</div>
+              <div class="district-stat-label">Posts/Week</div>
+            </div>
+            <div class="district-stat">
+              <div class="district-stat-value">10k</div>
+              <div class="district-stat-label">Reach/Month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parallax Effect Demo -->
+    <div class="parallax-demo">
+      <h3>📜 Parallax Effect Visualization</h3>
+      <div class="parallax-layers">
+        <div class="layer-label">Scroll direction ↓</div>
+        <div class="layer layer-1">
+          Layer 1 (Fastest): Agent Character
+        </div>
+        <div class="layer layer-2">
+          Layer 2 (Medium): District Buildings
+        </div>
+        <div class="layer layer-3">
+          Layer 3 (Slowest): Background City Skyline
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 20px; color: #8b92a8;">
+        Each layer moves at different speed = depth illusion
+      </p>
+    </div>
+
+    <!-- Animation Notes -->
+    <div class="animation-notes">
+      <h3>🎬 Animation Breakdown</h3>
+      <div class="animation-grid">
+        <div class="animation-item">
+          <h4>Scroll-Triggered Animations</h4>
+          <p><strong>GSAP ScrollTrigger</strong> - Animate elements as they enter viewport</p>
+        </div>
+        <div class="animation-item">
+          <h4>Character Animations</h4>
+          <p><strong>Lottie Files</strong> - Lightweight JSON-based character animations</p>
+        </div>
+        <div class="animation-item">
+          <h4>Parallax Scrolling</h4>
+          <p><strong>Rellax.js</strong> or <strong>GSAP</strong> - Multi-layer parallax effects</p>
+        </div>
+        <div class="animation-item">
+          <h4>Speech Bubbles</h4>
+          <p><strong>Popmotion</strong> - Bouncy, playful bubble animations</p>
+        </div>
+        <div class="animation-item">
+          <h4>Page Transitions</h4>
+          <p><strong>Barba.js</strong> - Smooth page-to-page transitions</p>
+        </div>
+        <div class="animation-item">
+          <h4>Micro-interactions</h4>
+          <p><strong>Framer Motion</strong> - Hover effects, clicks, feedback</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-stack">
+      <h3>🛠️ Tech Stack</h3>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="icon">⚡</div>
+          <h4>GSAP</h4>
+          <p>Scroll animations</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🎭</div>
+          <h4>Lottie</h4>
+          <p>Character animations</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">📜</div>
+          <h4>Rellax.js</h4>
+          <p>Parallax scrolling</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🎨</div>
+          <h4>PixiJS</h4>
+          <p>2D rendering</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🔄</div>
+          <h4>Barba.js</h4>
+          <p>Page transitions</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">✨</div>
+          <h4>Framer Motion</h4>
+          <p>Micro-interactions</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">📱</div>
+          <h4>Swiper.js</h4>
+          <p>Mobile swipe</p>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🎯</div>
+          <h4>Three.js</h4>
+          <p>Optional 3D elements</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
