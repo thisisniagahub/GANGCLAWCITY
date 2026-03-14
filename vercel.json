@@ -3,19 +3,9 @@
   "name": "gangclawcity",
   "builds": [
     {
-      "src": "landing-page/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": { "distDir": "." }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/landing-page/"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/landing-page/$1"
     }
   ],
   "github": {
