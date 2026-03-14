@@ -1,0 +1,285 @@
+# =============================================================================
+# GANGCLAWCITY - Comprehensive .gitignore
+# =============================================================================
+# Version: 2.0.0
+# Last Updated: March 14, 2026
+# Purpose: Security-first gitignore for monorepo structure
+# =============================================================================
+
+# =============================================================================
+# DEPENDENCIES (All Package Managers)
+# =============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+bun-debug.log*
+vendor/
+.bundle/
+.ruby-version
+.ruby-gemset
+Gemfile.lock
+composer.lock
+
+# =============================================================================
+# ENVIRONMENT VARIABLES & SECRETS (CRITICAL SECURITY)
+# =============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+*.env
+!.env.example
+!.env.sample
+secrets/
+*.secret
+*.secrets
+*.key
+*.pem
+*.crt
+*.cer
+*.der
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials/
+.aws/
+.azure/
+.gcp/
+.vercel/
+*.token
+*.apikey
+*.api_key
+*.secret_key
+
+# =============================================================================
+# BUILD OUTPUTS
+# =============================================================================
+dist/
+dist-ssr/
+dist-*/
+*.local
+.next/
+out/
+build/
+builds/
+*.bundle.js
+*.bundle.js.map
+*.min.js
+*.min.css
+coverage/
+.nyc_output/
+.nuxt/
+.output/
+.svelte-kit/
+.astro/
+
+# =============================================================================
+# IDE & EDITORS
+# =============================================================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =============================================================================
+# LOGS
+# =============================================================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+logs-debug.log*
+
+# =============================================================================
+# TESTING & COVERAGE
+# =============================================================================
+coverage/
+.nyc_output/
+*.lcov
+*.lcov.info
+test-results/
+playwright-report/
+playwright/.cache/
+jest-results/
+vitest-results/
+
+# =============================================================================
+# DOCKER & CONTAINERS
+# =============================================================================
+docker-compose.override.yml
+.docker/
+*.dockerfile.local
+containerd/
+volumes/
+
+# =============================================================================
+# KUBERNETES & ORCHESTRATION
+# =============================================================================
+*.kubeconfig
+kubeconfig
+.kube/
+helm-secrets/
+*.helm
+sops/
+*.sops
+
+# =============================================================================
+# VERCEL SPECIFIC
+# =============================================================================
+.vercel
+.vercel.json
+!.vercel/project.json
+
+# =============================================================================
+# OS GENERATED FILES
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+Icon
+icon?
+
+# =============================================================================
+# TYPESCRIPT
+# =============================================================================
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# =============================================================================
+# OPTIONAL - RESEARCH REPORTS (UNCOMMENT IF NEEDED)
+# =============================================================================
+# *_research_report.md
+# *_analysis.md
+# *_backup.md
+# *_old.md
+
+# =============================================================================
+# BACKUPS & TEMPORARY FILES
+# =============================================================================
+*.bak
+*.backup
+*.tmp
+*.temp
+temp/
+tmp/
+.cache/
+.parcel-cache/
+
+# =============================================================================
+# SENSITIVE DOCUMENTATION
+# =============================================================================
+**/passwords.md
+**/credentials.md
+**/access-keys.md
+**/private-keys.md
+**/security-questions.md
+**/admin-credentials.md
+
+# =============================================================================
+# DATABASE FILES
+# =============================================================================
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+data.db
+database.db
+*.mdb
+*.accdb
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# =============================================================================
+# JAVA
+# =============================================================================
+*.class
+*.jar
+*.war
+*.ear
+target/
+gradle-build/
+build/
+
+# =============================================================================
+# GO
+# =============================================================================
+bin/
+pkg/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# =============================================================================
+# RUST
+# =============================================================================
+target/
+**/target/
+Cargo.lock
+
+# =============================================================================
+# MONOREPO SPECIFIC
+# =============================================================================
+# Keep root package.json but ignore workspace-specific ones if needed
+# package.json (uncomment if you want to ignore all package.json files)
+# pnpm-lock.yaml (uncomment if you want to ignore lock files)
+
+# =============================================================================
+# MISC
+# =============================================================================
+*.tgz
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.iso
+*.dmg
+*.pkg
+
+# =============================================================================
+# END OF GITIGNORE
+# =============================================================================
