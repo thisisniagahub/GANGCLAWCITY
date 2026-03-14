@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "name": "gangclawcity",
+  "builds": [
+    {
+      "src": "landing-page/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "." }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/landing-page/$1"
+    }
+  ],
+  "github": {
+    "silent": false,
+    "autoJobCancelation": true
+  }
+}

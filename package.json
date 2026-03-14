@@ -1,0 +1,23 @@
+{
+  "name": "gangclawcity",
+  "version": "1.0.0",
+  "description": "AI Workforce Operating System",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "echo 'Start complete'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thisisniagahub/GANGCLAWCITY.git"
+  },
+  "keywords": [
+    "AI",
+    "workforce",
+    "operating-system",
+    "malaysia",
+    "openclaw",
+    "niagabot"
+  ],
+  "author": "NiagaHub",
+  "license": "MIT"
+}
