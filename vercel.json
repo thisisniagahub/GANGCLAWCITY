@@ -1,13 +1,8 @@
 {
   "version": 2,
   "name": "gangclawcity",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "." }
-    }
-  ],
+  "cleanUrls": false,
+  "trailingSlash": false,
   "github": {
     "silent": false,
     "autoJobCancelation": true
