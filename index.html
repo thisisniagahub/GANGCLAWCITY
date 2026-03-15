@@ -1,598 +1,470 @@
 <!DOCTYPE html>
-<html lang="ms" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GANGCLAWCITY — Malaysia Agent City OS</title>
-  <meta name="description" content="Platform bandar digital untuk mengurus tenaga kerja AI bagi SME, creators, agensi, dan institusi Malaysia. The operating system for the AI workforce era." />
-  <meta name="keywords" content="AI, agents, Malaysia, SME, digital workforce, automation, OpenClaw, GANGCLAWCITY" />
-  <meta property="og:title" content="GANGCLAWCITY — Malaysia Agent City OS" />
-  <meta property="og:description" content="A living operating system for digital labor. Built Malaysia-first." />
+  <title>GANGCLAWCITY | Operate AI Like A Visible Workforce</title>
+  <meta
+    name="description"
+    content="GANGCLAWCITY is a Malaysia-first AI workforce platform that turns proven agent systems into one visible operating model with dashboards, districts, and command-grade control."
+  />
+  <meta
+    name="keywords"
+    content="GANGCLAWCITY, AI workforce, AI operations, OpenClaw, Malaysia, multi-agent platform, dashboard, city view"
+  />
+  <meta property="og:title" content="GANGCLAWCITY | Operate AI Like A Visible Workforce" />
+  <meta
+    property="og:description"
+    content="Five proven foundations. Two core operating surfaces. One city model for running AI with visibility, control, and economic intent."
+  />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0a0e1a" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="canonical" href="https://gangclawcity.my" />
+  <meta property="og:image" content="assets/hero-city.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GANGCLAWCITY — Malaysia Agent City OS" />
-  <meta name="twitter:description" content="A living operating system for digital labor. Built Malaysia-first." />
+  <meta name="twitter:title" content="GANGCLAWCITY | Operate AI Like A Visible Workforce" />
+  <meta
+    name="twitter:description"
+    content="A command-grade AI workforce platform built to make digital labor visible, governable, and useful."
+  />
+  <meta name="theme-color" content="#08121d" />
+  <link rel="icon" type="image/png" href="assets/district-icons.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Skip to Content Link (Accessibility) -->
-  <a href="#hero" class="skip-link" aria-label="Skip to content">Skip to content</a>
-  
-  <!-- ==================== PARTICLE CANVAS ==================== -->
-  <canvas id="particle-canvas"></canvas>
+  <a class="skip-link" href="#hero">Skip to content</a>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-  <!-- ==================== NAVBAR ==================== -->
   <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">⬡</span>
-        <span class="logo-text">GANGCLAW<span class="accent">CITY</span></span>
+    <div class="nav-shell">
+      <a href="#hero" class="brand" aria-label="GANGCLAWCITY home">
+        <span class="brand-mark">GC</span>
+        <span class="brand-copy">
+          <strong>GANGCLAWCITY</strong>
+          <span>AI Workforce Platform</span>
+        </span>
       </a>
+
       <div class="nav-links" id="nav-links">
-        <a href="#home">Home</a>
-        <a href="/demo" target="_blank">Demo</a>
-        <a href="/dashboard" target="_blank">Dashboard</a>
+        <a href="#overview">Overview</a>
+        <a href="#modules">Modules</a>
         <a href="#districts">Districts</a>
         <a href="#roadmap">Roadmap</a>
+        <a href="docs/DOCS_INDEX.md" target="_blank" rel="noopener">Docs</a>
       </div>
+
       <div class="nav-actions">
-        <a href="/dashboard" target="_blank" class="nav-cta nav-cta-primary">
-          <span>📊 Launch Dashboard</span>
-        </a>
-        <a href="/demo" target="_blank" class="nav-cta nav-cta-secondary">
-          <span>🎮 Try Demo</span>
-        </a>
+        <a class="btn btn-nav btn-soft" href="#cta">Join Waitlist</a>
+        <a class="btn btn-nav btn-solid" href="docs/00-start-here/QUICKSTART.md" target="_blank" rel="noopener">Quickstart</a>
       </div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </nav>
 
-  <!-- ==================== HERO ==================== -->
   <header id="hero">
-    <div class="hero-bg">
-      <img src="assets/hero-city.png" alt="GANGCLAWCITY Digital City" />
+    <div class="hero-media">
+      <img src="assets/hero-city.png" alt="GANGCLAWCITY city-view concept art" />
       <div class="hero-overlay"></div>
     </div>
-    <div class="hero-content reveal">
-      <div class="hero-badge">🇲🇾 Malaysia Agent City OS</div>
-      <h1>
-        <span class="hero-line">The Operating System</span>
-        <span class="hero-line gradient-text">For The AI Workforce Era</span>
-      </h1>
-      <p class="hero-sub">
-        AI should not feel invisible. Not fragmented. Not like ten tabs, five dashboards, and zero clarity.
-        <strong>GANGCLAWCITY</strong> is a living digital city where AI agents work, move, coordinate, and create measurable value.
+
+    <div class="hero-shell reveal">
+      <div class="eyebrow-row">
+        <span class="eyebrow">Malaysia-first AI workforce platform</span>
+        <span class="eyebrow eyebrow-alt">Built by absorbing proven systems, not starting from zero</span>
+      </div>
+
+      <h1>Operate AI like a visible workforce, not a pile of tabs.</h1>
+
+      <p class="hero-copy">
+        GANGCLAWCITY turns proven agent systems into one command model with a live dashboard, a spatial city view,
+        district-based operations, and a cleaner path toward secure, governed deployment.
       </p>
+
       <div class="hero-actions">
-        <a href="#solution" class="btn btn-primary">
-          <span>Explore the City</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a href="#districts" class="btn btn-ghost">
-          <span>View Districts</span>
-        </a>
+        <a class="btn btn-solid" href="#modules">Explore The Platform</a>
+        <a class="btn btn-soft" href="README.md" target="_blank" rel="noopener">Read Project Brief</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-val" data-count="8">0</span>
-          <span class="stat-label">District</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val" data-count="5">0</span>
-          <span class="stat-label">Fasa</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val" data-count="35">0</span>
-          <span class="stat-label">Pilot Users</span>
-        </div>
+
+      <div class="hero-metrics">
+        <article class="metric-card">
+          <span class="metric-value" data-count="5">0</span>
+          <span class="metric-label">proven codebases absorbed into one strategy</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-value" data-count="2">0</span>
+          <span class="metric-label">core surfaces leading the first product cut</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-value" data-count="8">0</span>
+          <span class="metric-label">districts framing the operating model</span>
+        </article>
       </div>
-    </div>
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
     </div>
   </header>
 
-  <!-- ==================== MANIFESTO ==================== -->
-  <section id="manifesto" class="section">
-    <div class="container">
-      <div class="manifesto-grid reveal">
-        <div class="manifesto-left">
-          <h2 class="section-label">Manifesto</h2>
-          <h3 class="manifesto-title">
-            Not a chatbot.<br/>
-            Not another dashboard.<br/>
-            <span class="gradient-text">Not a toy simulation.</span>
-          </h3>
+  <main>
+    <section id="overview" class="section">
+      <div class="section-shell reveal section-split">
+        <div>
+          <p class="section-kicker">What this project is</p>
+          <h2>One operating story for AI work, control, and scale.</h2>
         </div>
-        <div class="manifesto-right">
-          <p>GANGCLAWCITY is a <strong>city-based operating system</strong> for managing AI labor.</p>
-          <p>In our system — districts represent business functions, agents represent digital workers, traffic represents task flow, approvals become checkpoints, bottlenecks become visible, and operators manage the whole city from a command tower.</p>
-          <p>Most AI tools help you <em>talk</em> to AI. We help you <strong>operate AI</strong>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ==================== PROBLEM ==================== -->
-  <section id="problem" class="section section-dark">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">The Problem</h2>
-        <h3 class="section-title">Organisations have AI access —<br/><span class="gradient-text">but lack the ability to operate it.</span></h3>
-      </div>
-      <div class="problem-grid reveal">
-        <div class="problem-card">
-          <div class="problem-icon">👁️</div>
-          <h4>Visibility Gap</h4>
-          <p>AI agents dan automasi berjalan secara abstrak, sukar dipantau secara live.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">🎮</div>
-          <h4>Control Gap</h4>
-          <p>Approval, override, dan routing kerja tidak tersusun dalam satu permukaan operasi.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">⚡</div>
-          <h4>Productivity Gap</h4>
-          <p>Pasukan kecil tidak dapat leverage AI sepenuhnya kerana workflows sukar disusun.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">🛡️</div>
-          <h4>Governance Gap</h4>
-          <p>Sukar untuk menentukan siapa buat apa, bila, dan atas konteks apa.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">📊</div>
-          <h4>Economic Gap</h4>
-          <p>Output AI sukar diterjemahkan kepada KPI sebenar seperti leads, conversions, dan ROI.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== SOLUTION ==================== -->
-  <section id="solution" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">Our Answer</h2>
-        <h3 class="section-title">A living digital city<br/><span class="gradient-text">where AI agents work together.</span></h3>
-      </div>
-      <div class="solution-visual reveal">
-        <img src="assets/dashboard-preview.png" alt="GANGCLAWCITY Dashboard" class="solution-img" />
-        <div class="solution-glow"></div>
-      </div>
-      <div class="solution-features reveal">
-        <div class="sol-feat">
-          <div class="sol-feat-icon">🏙️</div>
-          <h4>Districts = Business Functions</h4>
-          <p>Every district represents a real operational area — commerce, content, audit, routing, automation.</p>
-        </div>
-        <div class="sol-feat">
-          <div class="sol-feat-icon">🤖</div>
-          <h4>Agents = Digital Workers</h4>
-          <p>Each agent has identity, role, skills, and measurable output — like a real team member.</p>
-        </div>
-        <div class="sol-feat">
-          <div class="sol-feat-icon">🚦</div>
-          <h4>Traffic = Task Flow</h4>
-          <p>Visualize task movement, detect bottlenecks, check approvals — all in one living view.</p>
-        </div>
-        <div class="sol-feat">
-          <div class="sol-feat-icon">🗼</div>
-          <h4>Command Tower = Control</h4>
-          <p>Operators manage the entire system from a single command surface with full oversight.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== DISTRICTS ==================== -->
-  <section id="districts" class="section section-dark">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">City Districts</h2>
-        <h3 class="section-title">A city with <span class="gradient-text">purpose.</span></h3>
-        <p class="section-desc">Every district serves a specific operational role in your AI workforce city.</p>
-      </div>
-      <div class="district-grid reveal">
-        <div class="district-card" data-district="komando">
-          <div class="district-icon">🗼</div>
-          <h4>Menara Komando</h4>
-          <p>See everything. Approve anything. Control the city. KPI, alerts, human oversight.</p>
-          <div class="district-tag">Command Center</div>
-        </div>
-        <div class="district-card" data-district="niaga">
-          <div class="district-icon">🏪</div>
-          <h4>Lorong Niaga</h4>
-          <p>Commerce, affiliate, lead generation, marketplace ops.</p>
-          <div class="district-tag">Commerce</div>
-        </div>
-        <div class="district-card" data-district="konten">
-          <div class="district-icon">🎬</div>
-          <h4>Jalan Konten</h4>
-          <p>Content planning, production, publishing, creative automation.</p>
-          <div class="district-tag">Content</div>
-        </div>
-        <div class="district-card" data-district="audit">
-          <div class="district-icon">🔍</div>
-          <h4>Kota Audit</h4>
-          <p>Research, diagnosis, proposals, and business intelligence.</p>
-          <div class="district-tag">Research</div>
-        </div>
-        <div class="district-card" data-district="routing">
-          <div class="district-icon">🔀</div>
-          <h4>Stesen Routing</h4>
-          <p>Where handoffs, queues, and traffic become visible.</p>
-          <div class="district-tag">Routing</div>
-        </div>
-        <div class="district-card" data-district="automasi">
-          <div class="district-icon">⚙️</div>
-          <h4>Zon Automasi</h4>
-          <p>Schedulers, background jobs, and execution systems.</p>
-          <div class="district-tag">Automation</div>
-        </div>
-        <div class="district-card" data-district="eksperimen">
-          <div class="district-icon">🧪</div>
-          <h4>Pasar Eksperimen</h4>
-          <p>Fast tests, campaign learning, and commercial experimentation.</p>
-          <div class="district-tag">Experiments</div>
-        </div>
-        <div class="district-card" data-district="makmal">
-          <div class="district-icon">🔬</div>
-          <h4>Pinggir Makmal</h4>
-          <p>Where raw ideas, extracted patterns, and future products begin.</p>
-          <div class="district-tag">R&D Lab</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== DIFFERENCE ==================== -->
-  <section id="difference" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">Why Different</h2>
-        <h3 class="section-title">We don't help you <em>talk</em> to AI.<br/><span class="gradient-text">We help you operate it.</span></h3>
-      </div>
-      <div class="diff-grid reveal">
-        <div class="diff-col diff-old">
-          <h4 class="diff-label">Others Build</h4>
-          <ul>
-            <li>Another chatbot</li>
-            <li>Another automation tab</li>
-            <li>Another observability dashboard</li>
-            <li>A gimmick interface</li>
-            <li>Data without context</li>
-            <li>Single-agent tools</li>
-          </ul>
-        </div>
-        <div class="diff-divider">
-          <div class="diff-vs">VS</div>
-        </div>
-        <div class="diff-col diff-new">
-          <h4 class="diff-label">We Build</h4>
-          <ul>
-            <li>A visual command layer</li>
-            <li>An economic operations layer</li>
-            <li>A template platform</li>
-            <li>A public ecosystem</li>
-            <li>Work, movement &amp; value creation</li>
-            <li>Multi-agent workforce orchestration</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ARCHITECTURE ==================== -->
-  <section id="architecture" class="section section-dark">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">Product Architecture</h2>
-        <h3 class="section-title">Five layers.<br/><span class="gradient-text">One integrated stack.</span></h3>
-      </div>
-      <div class="arch-stack reveal">
-        <div class="arch-layer" data-layer="5">
-          <div class="arch-num">05</div>
-          <div class="arch-info">
-            <h4>Public Platform Layer</h4>
-            <p>Profiles, templates, marketplace, feeds, city share pages.</p>
-          </div>
-        </div>
-        <div class="arch-layer" data-layer="4">
-          <div class="arch-num">04</div>
-          <div class="arch-info">
-            <h4>City Layer</h4>
-            <p>District-based spatial operations and live city visualization.</p>
-          </div>
-        </div>
-        <div class="arch-layer" data-layer="3">
-          <div class="arch-num">03</div>
-          <div class="arch-info">
-            <h4>Ops Visual Layer</h4>
-            <p>Dashboard, state visibility, alerts, approvals, event normalization.</p>
-          </div>
-        </div>
-        <div class="arch-layer" data-layer="2">
-          <div class="arch-num">02</div>
-          <div class="arch-info">
-            <h4>OPENPROJECT Core</h4>
-            <p>Governance, handoff contracts, deployment truth, systems map.</p>
-          </div>
-        </div>
-        <div class="arch-layer" data-layer="1">
-          <div class="arch-num">01</div>
-          <div class="arch-info">
-            <h4>Runtime Core</h4>
-            <p>Multi-agent execution, routing, orchestration, skills, tools.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== TARGET USERS ==================== -->
-  <section id="users" class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">Built For</h2>
-        <h3 class="section-title">Built for the <span class="gradient-text">real economy.</span></h3>
-      </div>
-      <div class="users-grid reveal">
-        <div class="user-card">
-          <div class="user-emoji">🏢</div>
-          <h4>SME</h4>
-          <p>Run more workflows with less headcount. Scale like a bigger team.</p>
-        </div>
-        <div class="user-card">
-          <div class="user-emoji">📢</div>
-          <h4>Agensi</h4>
-          <p>Manage multi-client workflows with full visibility and control.</p>
-        </div>
-        <div class="user-card">
-          <div class="user-emoji">🎨</div>
-          <h4>Creators</h4>
-          <p>Your team in software. Content, publishing, automation — all operated.</p>
-        </div>
-        <div class="user-card">
-          <div class="user-emoji">🚀</div>
-          <h4>Solo Founders</h4>
-          <p>Operate like a full company from day one with AI workforce leverage.</p>
-        </div>
-        <div class="user-card">
-          <div class="user-emoji">⚡</div>
-          <h4>Digital Operators</h4>
-          <p>Lead generation, commerce, affiliate — all routed through one city.</p>
-        </div>
-        <div class="user-card">
-          <div class="user-emoji">🏛️</div>
-          <h4>Institusi</h4>
-          <p>AI governance, observability, and workflow compliance at enterprise scale.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ROADMAP ==================== -->
-  <section id="roadmap" class="section section-dark">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">Roadmap</h2>
-        <h3 class="section-title">From system truth<br/><span class="gradient-text">to a living ecosystem.</span></h3>
-      </div>
-      <div class="roadmap-timeline reveal">
-        <div class="roadmap-line"></div>
-        <div class="roadmap-phase active">
-          <div class="phase-dot"></div>
-          <div class="phase-content">
-            <span class="phase-num">Fasa 1</span>
-            <h4>System Truth & Hardening</h4>
-            <p>Architecture validation, governance docs, handoff contracts, monitoring, deployment workflows.</p>
-          </div>
-        </div>
-        <div class="roadmap-phase">
-          <div class="phase-dot"></div>
-          <div class="phase-content">
-            <span class="phase-num">Fasa 2</span>
-            <h4>Ops Dashboard MVP</h4>
-            <p>Live status, queue monitoring, productivity analytics, task visibility, operator commands.</p>
-          </div>
-        </div>
-        <div class="roadmap-phase">
-          <div class="phase-dot"></div>
-          <div class="phase-content">
-            <span class="phase-num">Fasa 3</span>
-            <h4>City Layer MVP</h4>
-            <p>Menara Komando, 3-4 core districts, live task traffic, alert overlays, human intervention.</p>
-          </div>
-        </div>
-        <div class="roadmap-phase">
-          <div class="phase-dot"></div>
-          <div class="phase-content">
-            <span class="phase-num">Fasa 4</span>
-            <h4>Public Platform & Ecosystem</h4>
-            <p>Share pages, city templates, agent identity layer, template marketplace.</p>
-          </div>
-        </div>
-        <div class="roadmap-phase">
-          <div class="phase-dot"></div>
-          <div class="phase-content">
-            <span class="phase-num">Fasa 5</span>
-            <h4>Sector Packs</h4>
-            <p>SME Pack, Agency Pack, Creator Pack, Institutional Pack. Regional expansion.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== MALAYSIA FIRST ==================== -->
-  <section id="malaysia" class="section">
-    <div class="container">
-      <div class="malaysia-block reveal">
-        <div class="malaysia-flag">🇲🇾</div>
-        <h2 class="section-label">Malaysia First</h2>
-        <h3 class="malaysia-title">
-          Malaysia should not only consume AI.<br/>
-          Malaysia should build <span class="gradient-text">applied AI infrastructure</span><br/>
-          for its own economy, teams, and future.
-        </h3>
-        <div class="malaysia-values">
-          <div class="mv">
-            <strong>Produktiviti SME</strong>
-            <span>Leverage yang lebih tinggi melalui tenaga kerja AI yang mudah dikawal.</span>
-          </div>
-          <div class="mv">
-            <strong>AI Adoption Praktikal</strong>
-            <span>Menjadikan AI lebih mudah difahami oleh organisasi bukan teknikal.</span>
-          </div>
-          <div class="mv">
-            <strong>Ekosistem Tempatan</strong>
-            <span>District creators, workflow builders, skill pack publishers.</span>
-          </div>
-          <div class="mv">
-            <strong>Workforce Augmentation</strong>
-            <span>Beroperasi seperti pasukan besar tanpa kos tradisional.</span>
-          </div>
-          <div class="mv">
-            <strong>Malaysia-first Infrastructure</strong>
-            <span>Pembina lapisan operasi AI yang praktikal, bukan sekadar pengguna.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== VIRAL ==================== -->
-  <section id="viral" class="section section-dark">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-label">Shareable by Design</h2>
-        <h3 class="section-title">People don't share architecture diagrams.<br/><span class="gradient-text">They share social objects.</span></h3>
-      </div>
-      <div class="viral-grid reveal">
-        <div class="viral-item">🏙️ City Snapshots</div>
-        <div class="viral-item">👤 Public Agent Profiles</div>
-        <div class="viral-item">📊 District Performance Cards</div>
-        <div class="viral-item">📦 Template Installs</div>
-        <div class="viral-item">🏆 Leaderboard Views</div>
-        <div class="viral-item">🔄 Cloneable City Setups</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CTA ==================== -->
-  <section id="cta" class="section section-cta">
-    <div class="container">
-      <div class="cta-block reveal">
-        <h2 class="cta-title">
-          The future of AI is not just assistants.<br/>
-          It is <span class="gradient-text">AI workforce</span>.
-        </h2>
-        <p class="cta-sub">
-          And the winners will be the people, companies, and nations that learn how to manage that workforce well.
-        </p>
-        
-        <!-- Email Capture Form -->
-        <div class="email-capture reveal">
-          <h3 style="color: #e8eaf0; font-size: 1.3rem; margin-bottom: 12px; font-weight: 700;">
-            🚀 Join the Waitlist
-          </h3>
-          <p style="color: #8b92a8; font-size: 1rem; margin-bottom: 24px;">
-            Be the first to access GANGCLAWCITY. Limited spots for beta testing.
+        <div class="overview-copy">
+          <p>
+            The product direction is simple: stop presenting disconnected demos and start shipping a single GANGCLAWCITY
+            platform with a strong operator surface, a memorable city metaphor, and a real path to production hardening.
           </p>
-          <form class="email-form" id="waitlist-form" action="#" method="POST">
-            <div class="email-input-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-                class="email-input"
-              />
-              <button type="submit" class="email-submit">
-                <span>Get Early Access</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                </svg>
-              </button>
-            </div>
-            <p class="email-privacy">
-              🔒 No spam. Unsubscribe anytime. See our 
-              <a href="#" style="color: #00e5ff; text-decoration: underline;">Privacy Policy</a>
-            </p>
-          </form>
-          <div class="email-success" id="success-message" style="display: none;">
-            <div style="font-size: 3rem; margin-bottom: 16px;">🎉</div>
-            <h4 style="color: #00e676; font-size: 1.5rem; margin-bottom: 12px; font-weight: 700;">
-              You're on the list!
-            </h4>
-            <p style="color: #8b92a8; font-size: 1rem;">
-              Terima kasih! We'll be in touch soon with exclusive updates.
-            </p>
-          </div>
+          <p>
+            Instead of building everything from zero, GANGCLAWCITY takes successful foundations, removes vendor framing,
+            aligns the architecture, and improves the system until it feels like one serious company product.
+          </p>
         </div>
-        
-        <div class="cta-actions">
-          <a href="/demo" class="btn btn-primary btn-lg">
-            <span>🎮 Try Interactive Demo</span>
-          </a>
-          <a href="/dashboard" class="btn btn-ghost">
-            <span>📊 Launch Dashboard</span>
-          </a>
-          <a href="#hero" class="btn btn-ghost">
-            <span>Back to Top</span>
-          </a>
-        </div>
-        <p class="cta-tagline">
-          <span class="logo-icon">⬡</span> GANGCLAWCITY — A living operating system for digital labor.
+      </div>
+
+      <div class="section-shell reveal proof-grid">
+        <article class="proof-card">
+          <span class="proof-index">01</span>
+          <h3>Command clarity</h3>
+          <p>Operators should see states, routes, approvals, and pressure points without guessing.</p>
+        </article>
+        <article class="proof-card">
+          <span class="proof-index">02</span>
+          <h3>Economic intent</h3>
+          <p>Every district exists to drive visible business output, not just technical novelty.</p>
+        </article>
+        <article class="proof-card">
+          <span class="proof-index">03</span>
+          <h3>Trustworthy integration</h3>
+          <p>The end state is one coherent platform, not five borrowed products pretending to be integrated.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="modules" class="section section-ink">
+      <div class="section-shell reveal section-header">
+        <p class="section-kicker">Platform surface</p>
+        <h2>Two core apps first. Three more modules absorbed with intent.</h2>
+        <p class="section-lead">
+          The near-term product is led by a control dashboard and a city-style operating surface. Everything else supports,
+          enriches, or extends that core.
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <span class="logo-icon">⬡</span>
-            <span class="logo-text">GANGCLAW<span class="accent">CITY</span></span>
-          </a>
-          <p>Malaysia Agent City OS</p>
+      <div class="section-shell modules-layout reveal">
+        <div class="module-grid">
+          <article class="module-card module-card-core">
+            <div class="module-top">
+              <span class="module-badge">Core</span>
+              <span class="module-code">01</span>
+            </div>
+            <h3>GANGCLAWCITY Dashboard</h3>
+            <p>The command surface for visibility, approvals, connection state, and operating discipline.</p>
+            <ul>
+              <li>Operator-first UI</li>
+              <li>Gateway connection management</li>
+              <li>Security-hardening path in progress</li>
+            </ul>
+          </article>
+
+          <article class="module-card module-card-core">
+            <div class="module-top">
+              <span class="module-badge">Core</span>
+              <span class="module-code">02</span>
+            </div>
+            <h3>GANGCLAWCITY CityView</h3>
+            <p>A spatial layer for districts, task flow, and live movement across the operating city.</p>
+            <ul>
+              <li>District-based navigation</li>
+              <li>Memorable product identity</li>
+              <li>Best surface for demos and storytelling</li>
+            </ul>
+          </article>
+
+          <article class="module-card">
+            <div class="module-top">
+              <span class="module-badge">Absorb</span>
+              <span class="module-code">03</span>
+            </div>
+            <h3>GANGCLAWCITY Office</h3>
+            <p>Operations workspace for office-style flows, admin tooling, and business execution support.</p>
+            <ul>
+              <li>Internal workflow support</li>
+              <li>Future business pack destination</li>
+              <li>Needs final platform alignment</li>
+            </ul>
+          </article>
+
+          <article class="module-card">
+            <div class="module-top">
+              <span class="module-badge">Absorb</span>
+              <span class="module-code">04</span>
+            </div>
+            <h3>GANGCLAWCITY Lab</h3>
+            <p>Experiment lane for new flows, prototypes, campaign mechanics, and model ideas before promotion.</p>
+            <ul>
+              <li>Fast iteration zone</li>
+              <li>Research and experimentation</li>
+              <li>Candidate feeder into core apps</li>
+            </ul>
+          </article>
+
+          <article class="module-card">
+            <div class="module-top">
+              <span class="module-badge">Absorb</span>
+              <span class="module-code">05</span>
+            </div>
+            <h3>GANGCLAWCITY Engine</h3>
+            <p>Runtime, tools, skills, and supporting execution systems that power the product underneath.</p>
+            <ul>
+              <li>Operational tooling foundation</li>
+              <li>Automation and execution support</li>
+              <li>Needs stricter ownership boundaries</li>
+            </ul>
+          </article>
         </div>
-        <div class="footer-links">
-          <h5>Platform</h5>
-          <a href="#districts">Districts</a>
-          <a href="#architecture">Architecture</a>
-          <a href="#roadmap">Roadmap</a>
+
+        <aside class="module-panel">
+          <div class="panel-flag">Current message</div>
+          <h3>This is not a toy landing page.</h3>
+          <p>
+            The product claim is direct: GANGCLAWCITY is becoming an AI workforce platform built from proven foundations,
+            with the first serious cut centered on command visibility and city-level operations.
+          </p>
+          <img src="assets/dashboard-preview.png" alt="GANGCLAWCITY dashboard preview" class="panel-shot" />
+          <div class="command-list">
+            <div><span>Focus</span><code>dashboard + cityview first</code></div>
+            <div><span>Docs</span><code>docs/00-start-here/QUICKSTART.md</code></div>
+            <div><span>Rule</span><code>no production token in browser</code></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="districts" class="section">
+      <div class="section-shell reveal section-header">
+        <p class="section-kicker">District model</p>
+        <h2>Eight districts turn AI operations into something legible.</h2>
+        <p class="section-lead">
+          The city concept matters because it gives teams a stable operating language for work, ownership, pressure, and value creation.
+        </p>
+      </div>
+
+      <div class="section-shell district-grid reveal">
+        <article class="district-card">
+          <span class="district-token">MK</span>
+          <h3>Menara Komando</h3>
+          <p>Command center for oversight, interventions, status checks, and operating decisions.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">LN</span>
+          <h3>Lorong Niaga</h3>
+          <p>Sales, commerce, lead handling, and revenue-oriented workflows.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">JK</span>
+          <h3>Jalan Konten</h3>
+          <p>Content planning, creation, publishing, and creative throughput.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">KA</span>
+          <h3>Kota Audit</h3>
+          <p>Research, proposals, diagnostics, and business intelligence flows.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">SR</span>
+          <h3>Stesen Routing</h3>
+          <p>Queue logic, handoff visibility, and task traffic coordination.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">ZA</span>
+          <h3>Zon Automasi</h3>
+          <p>Schedulers, background execution, and repeatable system work.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">PE</span>
+          <h3>Pasar Eksperimen</h3>
+          <p>Testing lane for campaigns, commercial ideas, and iteration loops.</p>
+        </article>
+        <article class="district-card">
+          <span class="district-token">PM</span>
+          <h3>Pinggir Makmal</h3>
+          <p>R&amp;D edge for extracting patterns and shaping the next product surface.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="advantage" class="section section-ink">
+      <div class="section-shell reveal section-header">
+        <p class="section-kicker">Why this can win</p>
+        <h2>A stronger angle than yet another chatbot wrapper.</h2>
+      </div>
+
+      <div class="section-shell advantage-grid reveal">
+        <article class="advantage-card">
+          <h3>Visible operations</h3>
+          <p>Work becomes monitorable through districts, traffic, and command surfaces instead of buried logs and scattered tabs.</p>
+        </article>
+        <article class="advantage-card">
+          <h3>Proven foundations</h3>
+          <p>The platform inherits speed from existing successful systems while moving toward one owned product identity.</p>
+        </article>
+        <article class="advantage-card">
+          <h3>Malaysia-first framing</h3>
+          <p>The market story is practical: help SMEs, operators, creators, and agencies work like larger teams.</p>
+        </article>
+        <article class="advantage-card">
+          <h3>Serious hardening path</h3>
+          <p>Security and deployment truth have to improve, and the product story is clearer when that work is stated honestly.</p>
+        </article>
+      </div>
+
+      <div class="section-shell reveal security-note">
+        <span class="security-label">Security note</span>
+        <p>Production credentials must stay server-side. The platform direction is secure operator control, not client-side token exposure.</p>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="section-shell reveal section-header">
+        <p class="section-kicker">Operating stack</p>
+        <h2>One product, five layers, no fake platform theater.</h2>
+      </div>
+
+      <div class="section-shell architecture-stack reveal">
+        <article class="layer-row">
+          <span>05</span>
+          <div>
+            <h3>Experience Layer</h3>
+            <p>Landing pages, public-facing narratives, sector positioning, and shareable entry points.</p>
+          </div>
+        </article>
+        <article class="layer-row">
+          <span>04</span>
+          <div>
+            <h3>City Layer</h3>
+            <p>District model, spatial storytelling, and live visual operating language.</p>
+          </div>
+        </article>
+        <article class="layer-row">
+          <span>03</span>
+          <div>
+            <h3>Command Layer</h3>
+            <p>Dashboard, approvals, intervention controls, and operator observability.</p>
+          </div>
+        </article>
+        <article class="layer-row">
+          <span>02</span>
+          <div>
+            <h3>Service Layer</h3>
+            <p>Business flows, office modules, support tooling, and internal platform services.</p>
+          </div>
+        </article>
+        <article class="layer-row">
+          <span>01</span>
+          <div>
+            <h3>Runtime Layer</h3>
+            <p>Agents, tools, skills, routing, nodes, and the execution substrate underneath.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section section-ink">
+      <div class="section-shell reveal section-header">
+        <p class="section-kicker">Execution order</p>
+        <h2>Ship the strong core first. Absorb the rest with discipline.</h2>
+      </div>
+
+      <div class="section-shell roadmap-list reveal">
+        <article class="roadmap-step is-active">
+          <span class="roadmap-phase">Phase 1</span>
+          <h3>Hardening and message alignment</h3>
+          <p>Fix docs, reduce false claims, tighten landing page narrative, and make the public surface credible.</p>
+        </article>
+        <article class="roadmap-step">
+          <span class="roadmap-phase">Phase 2</span>
+          <h3>Dashboard plus CityView core</h3>
+          <p>Make the control surface and district model the unmistakable face of the product.</p>
+        </article>
+        <article class="roadmap-step">
+          <span class="roadmap-phase">Phase 3</span>
+          <h3>Security and deployment cutover</h3>
+          <p>Remove risky token patterns, align runtime paths, and choose one trustworthy deployment story.</p>
+        </article>
+        <article class="roadmap-step">
+          <span class="roadmap-phase">Phase 4</span>
+          <h3>Module absorption and sector packs</h3>
+          <p>Pull the remaining systems into GANGCLAWCITY naming, workflows, and product packaging.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="cta" class="section">
+      <div class="section-shell reveal cta-shell">
+        <div class="cta-copy">
+          <p class="section-kicker">Next move</p>
+          <h2>Build the city people remember. Run the platform operators trust.</h2>
+          <p>
+            If the product is going to feel Fortune 500-grade, every visible surface has to be sharp, intentional, and aligned with one serious platform story.
+          </p>
         </div>
-        <div class="footer-links">
-          <h5>Community</h5>
-          <a href="https://github.com/thisisniagahub/LAPA-KITCHEN" target="_blank" rel="noopener">GitHub</a>
-          <a href="#cta">Join</a>
-        </div>
-        <div class="footer-links">
-          <h5>Resources</h5>
-          <a href="#problem">Why GANGCLAWCITY</a>
-          <a href="#malaysia">Malaysia First</a>
+
+        <div class="waitlist-card">
+          <h3>Join the waitlist</h3>
+          <p>This local preview stores your email on this device so the interaction works even without a backend yet.</p>
+
+          <form id="waitlist-form" class="waitlist-form">
+            <label class="sr-only" for="email">Email address</label>
+            <div class="waitlist-row">
+              <input id="email" name="email" type="email" placeholder="you@company.com" required />
+              <button type="submit" class="btn btn-solid">Get Early Access</button>
+            </div>
+            <p class="waitlist-meta">Current preview mode: local device save only.</p>
+          </form>
+
+          <div id="success-message" class="waitlist-success" hidden>
+            <strong>Saved.</strong>
+            <span>Your email is stored in this browser for preview purposes.</span>
+          </div>
+
+          <div class="cta-links">
+            <a class="btn btn-soft" href="docs/DOCS_INDEX.md" target="_blank" rel="noopener">Open Docs</a>
+            <a class="btn btn-soft" href="https://github.com/thisisniagahub/GANGCLAWCITY" target="_blank" rel="noopener">View GitHub</a>
+          </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 GANGCLAWCITY. Built from Malaysia 🇲🇾 with AI-first precision.</p>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-shell">
+      <div>
+        <a href="#hero" class="brand brand-footer">
+          <span class="brand-mark">GC</span>
+          <span class="brand-copy">
+            <strong>GANGCLAWCITY</strong>
+            <span>AI Workforce Platform</span>
+          </span>
+        </a>
+        <p class="footer-note">A sharper operating story for AI work, city-scale control, and product-grade execution.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#modules">Modules</a>
+        <a href="#districts">Districts</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="docs/00-start-here/QUICKSTART.md" target="_blank" rel="noopener">Quickstart</a>
+        <a href="https://github.com/thisisniagahub/GANGCLAWCITY" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>

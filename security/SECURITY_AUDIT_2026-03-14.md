@@ -5,6 +5,8 @@
 **Severity:** 🔴 **CRITICAL**  
 **Status:** Requires Immediate Action
 
+> Historical note: this audit reflects the repository before the March 15, 2026 documentation cleanup. Some referenced Markdown files were later moved into `docs/99-legacy/`.
+
 ---
 
 ## 🚨 CRITICAL FINDINGS
@@ -22,7 +24,7 @@
 
 #### **Files Containing Exposed Token:**
 1. `/QWEN.md` - 7 occurrences
-2. `/docs/01-architecture/ROADMAP.md` - 3 occurrences
+2. `/docs/99-legacy/architecture/ROADMAP.md` - 3 occurrences at audit time
 3. `/docs/01-architecture/ARCHITECTURE.md` - 4 occurrences
 4. `/docs/00-start-here/README.md` - 2 occurrences
 5. `/docs/00-start-here/DOCS_INDEX.md` - 1 occurrence

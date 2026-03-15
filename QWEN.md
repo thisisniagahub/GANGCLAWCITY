@@ -193,15 +193,15 @@ Services:
    Commands: gangclaw-agent [agent] [command]
    Status: ✅ READY
 
-7. EXECUTION_CHECKLIST.md:
-   Purpose: Step-by-step guide
-   Action: Complete execution checklist
-   Status: ✅ READY
+7. docs/00-start-here/START_HERE.md:
+   Purpose: Step-by-step repo entry guide
+   Action: Read before making changes
+   Status: ✅ ACTIVE
 
-8. AI_SELF_UPGRADE_V2.md:
-   Purpose: Self-improvement documentation
-   Action: Upgrade plan based on Qwen3.5-27B
-   Status: ✅ READY
+8. docs/99-legacy/root-status/AI_SELF_UPGRADE_V2.md:
+   Purpose: Historical self-improvement notes
+   Action: Reference only if legacy context is needed
+   Status: 📦 ARCHIVED
 ```
 
 ---
@@ -214,51 +214,40 @@ Services:
 GANGCLAWCITY/
 ├── QWEN.md ⭐ (MASTER CONTEXT - KEEP IN ROOT)
 ├── README.md ⭐ (Project overview)
+├── AGENTS.md
 ├── LICENSE
-├── .gitignore (Enhanced for security)
+├── .gitignore
 │
 ├── docs/ (All documentation organized)
 │   ├── 00-start-here/ (README, START_HERE, QUICKSTART)
-│   ├── 01-architecture/ (ARCHITECTURE, ROADMAP)
-│   ├── 02-deployment/ (Vercel guides)
-│   ├── 03-integration/ (Gateway docs)
+│   ├── 01-architecture/ (ARCHITECTURE)
+│   ├── 02-deployment/ (DEPLOYMENT_STATUS)
 │   ├── 04-research/ (Market research)
 │   ├── 05-brand/ (BRANDKIT, assets)
 │   ├── 06-contributing/ (CONTRIBUTING)
-│   ├── 07-skills/ (AI skills docs)
-│   ├── 08-testing/ (Testing reports)
 │   └── 99-legacy/ (Archived docs)
 │
 ├── config/ (Configuration files)
 │   ├── docker/ (docker-compose.yml)
 │   ├── k8s/ (skaffold.yaml, platform.yaml)
-│   └── vercel/ (Vercel configs)
+│   └── ...
 │
 ├── scripts/ (Automation scripts)
-│   ├── deployment/ (deploy.bat, git-push.bat)
+│   ├── deployment/
 │   ├── setup/ (SETUP_AND_RUN.bat)
-│   └── maintenance/ (Future scripts)
+│   └── ...
 │
 ├── security/ (Security documentation)
 │   ├── API_KEY_SECURITY.md
 │   └── SECURITY_AUDIT_2026-03-14.md
 │
-├── agents/ (Agent system)
-│   ├── documentation/
-│   ├── security/
-│   ├── deployment/
-│   ├── design/ (planned)
-│   ├── testing/ (planned)
-│   └── analytics/ (planned)
-│
-└── apps/ (Applications)
-    ├── landing-page/
-    ├── openclaw-office/
-    ├── agent-town/
-    ├── ai-town/
-    ├── Star-Office-UI/
-    ├── pixel-agents/
-    └── mock-gateway/
+├── openclaw-office/ (Dashboard donor app)
+├── agent-town/ (City demo donor app)
+├── ai-town/ (Simulation donor app)
+├── Star-Office-UI/ (Office board donor app)
+├── pixel-agents/ (Workspace tooling donor app)
+├── mock-gateway/
+└── root landing files (index.html, style.css, script.js)
 ```
 
 ---
@@ -364,19 +353,18 @@ Phase_6_Testing:
 Tier_1_Critical:
   - QWEN.md (MASTER CONTEXT)
   - README.md (Project overview)
-  - EXECUTION_CHECKLIST.md (Step-by-step)
+  - docs/00-start-here/START_HERE.md (Step-by-step)
 
 Tier_2_Important:
-  - ARCHITECTURE.md (Technical design)
-  - ROADMAP.md (Development timeline)
-  - DOCS_INDEX.md (Documentation index)
-  - AI_COMPLETE_UPGRADE.md (AI upgrade plan)
+  - docs/01-architecture/ARCHITECTURE.md (Technical design)
+  - docs/DOCS_INDEX.md (Documentation index)
+  - docs/02-deployment/DEPLOYMENT_STATUS.md (Deployment truth)
+  - docs/99-legacy/root-status/AI_COMPLETE_UPGRADE.md (Legacy reference)
 
 Tier_3_Reference:
-  - BRANDKIT.md (Brand guidelines)
-  - VERCEL_DEPLOYMENT_PLAN.md (Vercel guide)
-  - NIAGABOT_INTEGRATION_PLAN.md (Integration)
-  - SECURITY_AUDIT_2026-03-14.md (Security audit)
+  - docs/05-brand/BRANDKIT.md (Brand guidelines)
+  - security/SECURITY_AUDIT_2026-03-14.md (Security audit)
+  - docs/04-research/PROVEN_SUCCESS_STORIES_ANALYSIS.md (Research context)
 ```
 
 ---

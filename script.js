@@ -1,273 +1,306 @@
-/* =========================================
-   GANGCLAWCITY Landing Page — Interactive JS
-   ========================================= */
-
 (function () {
-  'use strict';
+  "use strict";
 
-  // ─── Particle Canvas ───────────────────────────────────────
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const navbar = document.getElementById("navbar");
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const counters = document.querySelectorAll("[data-count]");
+  const waitlistForm = document.getElementById("waitlist-form");
+  const emailInput = document.getElementById("email");
+  const successMessage = document.getElementById("success-message");
+
+  function updateNavbar() {
+    if (!navbar) {
+      return;
+    }
+
+    if (window.scrollY > 18) {
+      navbar.classList.add("is-scrolled");
+    } else {
+      navbar.classList.remove("is-scrolled");
+    }
+  }
+
+  updateNavbar();
+  window.addEventListener("scroll", updateNavbar, { passive: true });
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function (event) {
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") {
+        return;
+      }
+
+      const target = document.querySelector(href);
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({
+        top,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+    });
+  });
+
+  const revealElements = document.querySelectorAll(".reveal");
+
+  function showElement(element) {
+    element.classList.add("is-visible");
+  }
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealElements.forEach(showElement);
+  } else {
+    const revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          showElement(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.18,
+      }
+    );
+
+    revealElements.forEach(function (element) {
+      revealObserver.observe(element);
+    });
+  }
+
+  function animateCounter(element) {
+    if (element.dataset.animated === "true") {
+      return;
+    }
+
+    const target = Number(element.getAttribute("data-count") || "0");
+    element.dataset.animated = "true";
+
+    if (!target) {
+      element.textContent = "0";
+      return;
+    }
+
+    if (prefersReducedMotion) {
+      element.textContent = String(target);
+      return;
+    }
+
+    const duration = 900;
+    const start = Date.now();
+    const timer = window.setInterval(function () {
+      const progress = Math.min((Date.now() - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      element.textContent = String(Math.round(target * eased));
+
+      if (progress >= 1) {
+        window.clearInterval(timer);
+      }
+    }, 16);
+  }
+
+  function counterInView(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+  }
+
+  if (counters.length) {
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      counters.forEach(animateCounter);
+    } else {
+      const counterObserver = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.6,
+        }
+      );
+
+      counters.forEach(function (counter) {
+        counterObserver.observe(counter);
+      });
+    }
+
+    window.setTimeout(function () {
+      counters.forEach(function (counter) {
+        if (counterInView(counter)) {
+          animateCounter(counter);
+        }
+      });
+    }, 220);
+  }
+
+  const storageKey = "gangclawcity.waitlist.email";
+
+  function showSavedState() {
+    if (!successMessage || !waitlistForm) {
+      return;
+    }
+
+    successMessage.hidden = false;
+    waitlistForm.setAttribute("data-saved", "true");
+  }
+
+  try {
+    const savedEmail = window.localStorage.getItem(storageKey);
+    if (savedEmail && emailInput) {
+      emailInput.value = savedEmail;
+      showSavedState();
+    }
+  } catch (error) {
+    console.warn("Local storage unavailable for waitlist preview.", error);
+  }
+
+  if (waitlistForm && emailInput) {
+    waitlistForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const email = emailInput.value.trim();
+      if (!email) {
+        return;
+      }
+
+      try {
+        window.localStorage.setItem(storageKey, email);
+      } catch (error) {
+        console.warn("Unable to persist waitlist email locally.", error);
+      }
+
+      showSavedState();
+    });
+  }
+
+  const canvas = document.getElementById("particle-canvas");
+
+  if (!canvas || prefersReducedMotion) {
+    return;
+  }
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    return;
+  }
+
+  let width = 0;
+  let height = 0;
+  let animationFrame = 0;
+  const colors = ["#1ce0ff", "#7af3ab", "#ffb14a"];
   let particles = [];
-  let animFrameId;
 
   function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
   }
 
   function createParticles() {
-    particles = [];
-    const count = Math.min(Math.floor((canvas.width * canvas.height) / 18000), 80);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 1.5 + 0.5,
-        color: ['#00e5ff', '#e040fb', '#ffc400'][Math.floor(Math.random() * 3)],
-        alpha: Math.random() * 0.5 + 0.1,
-      });
-    }
+    const density = Math.min(Math.floor((width * height) / 32000), 42);
+    particles = Array.from({ length: Math.max(density, 18) }, function () {
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        size: Math.random() * 1.8 + 0.8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: Math.random() * 0.35 + 0.12,
+      };
+    });
   }
 
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function drawFrame() {
+    context.clearRect(0, 0, width, height);
 
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
+    particles.forEach(function (particle, index) {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
 
-      // Wrap around
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = p.alpha;
-      ctx.fill();
-
-      // Draw connections
-      for (let j = i + 1; j < particles.length; j++) {
-        const q = particles[j];
-        const dx = p.x - q.x;
-        const dy = p.y - q.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = p.color;
-          ctx.globalAlpha = (1 - dist / 120) * 0.08;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
+      if (particle.x < -20) {
+        particle.x = width + 20;
+      } else if (particle.x > width + 20) {
+        particle.x = -20;
       }
-    }
 
-    ctx.globalAlpha = 1;
-    animFrameId = requestAnimationFrame(drawParticles);
+      if (particle.y < -20) {
+        particle.y = height + 20;
+      } else if (particle.y > height + 20) {
+        particle.y = -20;
+      }
+
+      context.beginPath();
+      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      context.fillStyle = particle.color;
+      context.globalAlpha = particle.alpha;
+      context.fill();
+
+      for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex += 1) {
+        const other = particles[otherIndex];
+        const dx = particle.x - other.x;
+        const dy = particle.y - other.y;
+        const distance = Math.hypot(dx, dy);
+
+        if (distance > 128) {
+          continue;
+        }
+
+        context.beginPath();
+        context.moveTo(particle.x, particle.y);
+        context.lineTo(other.x, other.y);
+        context.strokeStyle = particle.color;
+        context.globalAlpha = (1 - distance / 128) * 0.12;
+        context.lineWidth = 0.7;
+        context.stroke();
+      }
+    });
+
+    context.globalAlpha = 1;
+    animationFrame = requestAnimationFrame(drawFrame);
   }
 
   resizeCanvas();
   createParticles();
-  drawParticles();
+  drawFrame();
 
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
+  let resizeTimeout = 0;
+  window.addEventListener("resize", function () {
+    window.clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(function () {
       resizeCanvas();
       createParticles();
-    }, 200);
+      window.cancelAnimationFrame(animationFrame);
+      drawFrame();
+    }, 140);
   });
-
-  // ─── Scroll Reveal ─────────────────────────────────────────
-  const revealElements = document.querySelectorAll('.reveal');
-
-  function checkReveal() {
-    const windowH = window.innerHeight;
-    revealElements.forEach((el) => {
-      const top = el.getBoundingClientRect().top;
-      if (top < windowH * 0.88) {
-        el.classList.add('visible');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', checkReveal, { passive: true });
-  window.addEventListener('load', checkReveal);
-  // Initial check
-  setTimeout(checkReveal, 100);
-
-  // ─── Navbar Scroll ─────────────────────────────────────────
-  const navbar = document.getElementById('navbar');
-
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (window.scrollY > 60) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    },
-    { passive: true }
-  );
-
-  // ─── Mobile Nav Toggle ─────────────────────────────────────
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks = document.getElementById('nav-links');
-
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-
-    // Close on link click
-    navLinks.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-      });
-    });
-  }
-
-  // ─── Counter Animation ─────────────────────────────────────
-  const counters = document.querySelectorAll('[data-count]');
-  let countersDone = false;
-
-  function animateCounters() {
-    if (countersDone) return;
-
-    counters.forEach((el) => {
-      const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight * 0.9) {
-        const target = parseInt(el.getAttribute('data-count'), 10);
-        let current = 0;
-        const increment = target / 40;
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            el.textContent = target + '+';
-            clearInterval(timer);
-          } else {
-            el.textContent = Math.floor(current);
-          }
-        }, 30);
-      }
-    });
-
-    countersDone = true;
-  }
-
-  window.addEventListener('scroll', animateCounters, { passive: true });
-  setTimeout(animateCounters, 500);
-
-  // ─── Smooth Scroll ─────────────────────────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href === '#') return;
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const yOffset = -70;
-        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // ─── District Card Hover Glow Effect ───────────────────────
-  document.querySelectorAll('.district-card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', x + 'px');
-      card.style.setProperty('--mouse-y', y + 'px');
-    });
-  });
-
-  // ─── Roadmap Phase Activation on Scroll ────────────────────
-  const phases = document.querySelectorAll('.roadmap-phase');
-
-  function checkPhases() {
-    phases.forEach((phase) => {
-      const top = phase.getBoundingClientRect().top;
-      if (top < window.innerHeight * 0.7) {
-        phase.classList.add('active');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', checkPhases, { passive: true });
-  setTimeout(checkPhases, 300);
-
-  // ─── Architecture Layer Stagger ────────────────────────────
-  const archLayers = document.querySelectorAll('.arch-layer');
-
-  function staggerLayers() {
-    archLayers.forEach((layer, i) => {
-      const top = layer.getBoundingClientRect().top;
-      if (top < window.innerHeight * 0.85) {
-        setTimeout(() => {
-          layer.style.opacity = '1';
-          layer.style.transform = 'translateX(0)';
-        }, i * 100);
-      }
-    });
-  }
-
-  // Init arch layers hidden
-  archLayers.forEach((layer) => {
-    layer.style.opacity = '0';
-    layer.style.transform = 'translateX(-20px)';
-    layer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  });
-
-  window.addEventListener('scroll', staggerLayers, { passive: true });
-  setTimeout(staggerLayers, 400);
-
-  // ─── Email Capture Form ────────────────────────────────────
-  const waitlistForm = document.getElementById('waitlist-form');
-  const successMessage = document.getElementById('success-message');
-
-  if (waitlistForm) {
-    waitlistForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const emailInput = document.getElementById('email');
-      const email = emailInput.value;
-      
-      // Show loading state
-      const submitBtn = waitlistForm.querySelector('.email-submit');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span>Submitting...</span>';
-      submitBtn.disabled = true;
-      
-      // TODO: Replace with actual API endpoint (e.g., Mailchimp, ConvertKit, Supabase)
-      // For now, simulate success
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Hide form, show success message
-      waitlistForm.style.display = 'none';
-      successMessage.style.display = 'block';
-      
-      // Log email (replace with actual API call)
-      console.log('Waitlist signup:', email);
-      
-      // Optional: Send to backend
-      // await fetch('/api/waitlist', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email })
-      // });
-    });
-  }
 })();

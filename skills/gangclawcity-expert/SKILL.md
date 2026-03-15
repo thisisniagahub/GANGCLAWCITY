@@ -40,28 +40,23 @@
 
 ```yaml
 Gateway:
-  URL: wss://operator.gangniaga.my
-  Token: <GATEWAY_TOKEN>
-  Session: agent:main:main
-  Auth: token-based
-  Rate Limit: 10 req/60s
+  Status: Verify from docs/02-deployment/DEPLOYMENT_STATUS.md
+  Token: Never store real values in docs or browser-visible config
+  Session: Verify from active runtime config, not from memory
+  Auth: Treat as security-sensitive
 
 VPS:
-  IP: 76.13.176.142
-  OpenClaw: Port 18789
-  Nginx: Ports 80, 443
-  Status: RUNNING - DON'T TOUCH
+  Status: Verify live access before making claims
+  Rule: Do not assume the repo reflects live server state
 
 NiagaBot:
-  Status: Running 24/7
-  Uptime: 6-9 days
-  Agents: Multiple active
-  Management: OpenClaw Gateway
+  Status: Verify from current operations evidence
+  Management: Depends on active OpenClaw runtime
 
 Deployment:
-  Frontend: Vercel (Auto SSL + CDN)
-  Backend: Existing OpenClaw Gateway
-  Zero Downtime: MANDATORY
+  Frontend: Pre-production integration work unless re-verified
+  Backend: Verify current gateway posture before suggesting rollout steps
+  Zero Downtime: Desired, not assumed
 ```
 
 ### **File References**
@@ -70,13 +65,13 @@ Deployment:
 Critical Files:
   - QWEN.md: Master context (READ FIRST)
   - README.md: Project overview
-  - ARCHITECTURE.md: Technical design
-  - VERCEL_AUTO_DEPLOY.md: Deployment guide
+  - docs/01-architecture/ARCHITECTURE.md: Technical design
+  - docs/02-deployment/DEPLOYMENT_STATUS.md: Deployment truth
   
 Reference Files:
-  - BRANDKIT.md: Brand guidelines
-  - ROADMAP.md: Development timeline
-  - GATEWAY_IMPROVEMENT_PLAN.md: Reference only
+  - docs/05-brand/BRANDKIT.md: Brand guidelines
+  - docs/99-legacy/architecture/ROADMAP.md: Historical roadmap
+  - docs/99-legacy/skills/GATEWAY_IMPROVEMENT_PLAN.md: Historical reference
 ```
 
 ---

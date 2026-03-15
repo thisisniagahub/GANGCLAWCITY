@@ -61,13 +61,14 @@ echo.
 echo Files to update:
 echo   - QWEN.md
 echo   - README.md
-echo   - ARCHITECTURE.md
-echo   - ROADMAP.md
-echo   - COMPLETE_SUMMARY.md
-echo   - REORGANIZATION_GUIDE.md
-echo   - REORGANIZATION_REPORT.md
+echo   - docs/DOCS_INDEX.md
+echo   - docs/01-architecture/ARCHITECTURE.md
+echo   - docs/02-deployment/DEPLOYMENT_STATUS.md
+echo   - docs/99-legacy/root-status/COMPLETE_SUMMARY.md
+echo   - docs/99-legacy/root-status/REORGANIZATION_GUIDE.md
+echo   - docs/99-legacy/root-status/REORGANIZATION_REPORT.md
 echo   - SECURITY_AUDIT_2026-03-14.md
-echo   - STRUCTURE_COMPLETE.md
+echo   - docs/99-legacy/root-status/STRUCTURE_COMPLETE.md
 echo   - skills/gangclawcity-expert/SKILL.md
 echo   - docs/ subdirectories
 echo.
