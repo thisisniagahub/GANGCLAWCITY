@@ -213,7 +213,7 @@ Services:
 ```
 GANGCLAWCITY/
 ├── QWEN.md ⭐ (MASTER CONTEXT - KEEP IN ROOT)
-├── README.md ⭐ (Project overview)
+├── README.md ⭐ (Project overview - HONEST UPSTREAM DECLARATION)
 ├── AGENTS.md
 ├── LICENSE
 ├── .gitignore
@@ -241,14 +241,37 @@ GANGCLAWCITY/
 │   ├── API_KEY_SECURITY.md
 │   └── SECURITY_AUDIT_2026-03-14.md
 │
-├── openclaw-office/ (Dashboard donor app)
-├── agent-town/ (City demo donor app)
-├── ai-town/ (Simulation donor app)
-├── Star-Office-UI/ (Office board donor app)
-├── pixel-agents/ (Workspace tooling donor app)
-├── mock-gateway/
+├── 🎯 CORE APPS (GANGCLAWCITY Original Products - Priority)
+│   ├── openclaw-office/ → GANGCLAWCITY Dashboard (In Progress)
+│   └── agent-town/ → GANGCLAWCITY CityView (In Progress)
+│
+├── 🧪 UPSTREAM DONORS (To Be Adapted - NOT Core Products Yet)
+│   ├── ai-town/ → Will become GANGCLAWCITY Lab
+│   ├── Star-Office-UI/ → Will become GANGCLAWCITY Office
+│   └── pixel-agents/ → Will become GANGCLAWCITY Workspace
+│
+├── mock-gateway/ (Local testing gateway)
 └── root landing files (index.html, style.css, script.js)
 ```
+
+### **UPSTREAM REPOSITORY DECLARATION**
+
+**CRITICAL:** These 5 folders contain **THIRD-PARTY CODE** - not GANGCLAWCITY original work:
+
+| Folder | Original Upstream | License | GANGCLAWCITY Adaptation |
+|--------|------------------|---------|------------------------|
+| `openclaw-office/` | WW-AI-Lab/openclaw-office | MIT | → GANGCLAWCITY Dashboard |
+| `agent-town/` | @geezerrrr/agent-town | MIT | → GANGCLAWCITY CityView |
+| `ai-town/` | (Convex example repo) | MIT | → GANGCLAWCITY Lab |
+| `Star-Office-UI/` | (Python Flask project) | MIT | → GANGCLAWCITY Office |
+| `pixel-agents/` | pablodelucca/pixel-agents | MIT | → GANGCLAWCITY Workspace |
+
+**Rules:**
+- ✅ MUST preserve original LICENSE files
+- ✅ MUST credit original authors
+- ✅ CANNOT claim we wrote upstream code
+- ✅ CAN rebrand user-facing surfaces
+- ✅ CAN improve and sell as GANGCLAWCITY products
 
 ---
 
