@@ -1,0 +1,284 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+  <!-- GANGCLAWCITY CITYVIEW - Isometric Pixel Art Background -->
+  
+  <defs>
+    <!-- Dark Navy Background -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a"/>
+      <stop offset="100%" style="stop-color:#1a1f3a"/>
+    </linearGradient>
+    
+    <!-- Building Gradients -->
+    <linearGradient id="building1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d3561"/>
+      <stop offset="100%" style="stop-color:#1a1f3a"/>
+    </linearGradient>
+    
+    <linearGradient id="building2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3d4571"/>
+      <stop offset="100%" style="stop-color:#2a2f4a"/>
+    </linearGradient>
+    
+    <!-- Neon Cyan Glow -->
+    <filter id="neonGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGradient)"/>
+  
+  <!-- Grid Pattern (Isometric) -->
+  <g opacity="0.1">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 0 20 L 20 0 L 40 20 L 20 40 Z" fill="none" stroke="#00e5ff" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="1920" height="1080" fill="url(#grid)"/>
+  </g>
+  
+  <!-- ISOMETRIC CITY BUILDINGS -->
+  
+  <!-- Building 1 - Tall Office -->
+  <g transform="translate(200, 400)">
+    <polygon points="0,100 60,70 60,20 0,50" fill="#2d3561"/>
+    <polygon points="60,70 120,100 120,50 60,20" fill="#3d4571"/>
+    <polygon points="0,50 60,20 120,50 60,80" fill="#4d5581"/>
+    <!-- Windows -->
+    <rect x="15" y="55" width="10" height="15" fill="#00e5ff" opacity="0.6"/>
+    <rect x="35" y="45" width="10" height="15" fill="#00e5ff" opacity="0.6"/>
+    <rect x="75" y="55" width="10" height="15" fill="#00e5ff" opacity="0.6"/>
+    <rect x="95" y="45" width="10" height="15" fill="#00e5ff" opacity="0.6"/>
+  </g>
+  
+  <!-- Building 2 - Shop House -->
+  <g transform="translate(400, 500)">
+    <polygon points="0,80 50,55 50,20 0,45" fill="#e040fb"/>
+    <polygon points="50,55 100,80 100,45 50,20" fill="#f050fb"/>
+    <polygon points="0,45 50,20 100,45 50,70" fill="#ff60fb"/>
+    <!-- Awning -->
+    <rect x="5" y="40" width="90" height="8" fill="#ffc400"/>
+  </g>
+  
+  <!-- Building 3 - Tech Hub -->
+  <g transform="translate(700, 350)">
+    <polygon points="0,150 80,110 80,30 0,70" fill="#1a2a4a"/>
+    <polygon points="80,110 160,150 160,70 80,30" fill="#2a3a5a"/>
+    <polygon points="0,70 80,30 160,70 80,110" fill="#3a4a6a"/>
+    <!-- Neon Sign -->
+    <text x="20" y="90" font-family="monospace" font-size="12" fill="#00e5ff" filter="url(#neonGlow)">AI LAB</text>
+  </g>
+  
+  <!-- Building 4 - Residential -->
+  <g transform="translate(1000, 450)">
+    <polygon points="0,100 60,70 60,40 0,70" fill="#5a4a6a"/>
+    <polygon points="60,70 120,100 120,70 60,40" fill="#6a5a7a"/>
+    <polygon points="0,70 60,40 120,70 60,100" fill="#7a6a8a"/>
+    <!-- Roof -->
+    <polygon points="0,70 60,40 120,70 60,90" fill="#8a7a9a"/>
+  </g>
+  
+  <!-- Building 5 - Mall -->
+  <g transform="translate(1300, 500)">
+    <polygon points="0,60 100,10 100,50 0,100" fill="#4a5a6a"/>
+    <polygon points="100,10 200,60 200,100 100,50" fill="#5a6a7a"/>
+    <polygon points="0,100 100,50 200,100 100,150" fill="#6a7a8a"/>
+    <!-- Glass Windows -->
+    <rect x="20" y="70" width="30" height="20" fill="#00e5ff" opacity="0.4"/>
+    <rect x="60" y="90" width="30" height="20" fill="#00e5ff" opacity="0.4"/>
+  </g>
+  
+  <!-- Building 6 - Factory -->
+  <g transform="translate(1600, 400)">
+    <polygon points="0,120 70,85 70,40 0,75" fill="#3a4a5a"/>
+    <polygon points="70,85 140,120 140,75 70,40" fill="#4a5a6a"/>
+    <polygon points="0,75 70,40 140,75 70,110" fill="#5a6a7a"/>
+    <!-- Smokestack -->
+    <rect x="90" y="20" width="20" height="20" fill="#2a3a4a"/>
+    <circle cx="100" cy="15" r="8" fill="#ffffff" opacity="0.3"/>
+  </g>
+  
+  <!-- STREETS (Isometric) -->
+  <g transform="translate(0, 600)">
+    <polygon points="0,0 1920,0 1920,100 0,100" fill="#2a3a4a" opacity="0.5"/>
+    <!-- Road Markings -->
+    <line x1="0" y1="50" x2="1920" y2="50" stroke="#ffc400" stroke-width="4" stroke-dasharray="20,20"/>
+  </g>
+  
+  <!-- PIXEL ART ROBOTS/AGENTS -->
+  
+  <!-- Robot 1 -->
+  <g transform="translate(300, 650)">
+    <rect x="0" y="0" width="20" height="30" fill="#00e5ff"/>
+    <rect x="5" y="5" width="4" height="4" fill="#06080f"/>
+    <rect x="11" y="5" width="4" height="4" fill="#06080f"/>
+    <rect x="2" y="30" width="6" height="10" fill="#00c8e0"/>
+    <rect x="12" y="30" width="6" height="10" fill="#00c8e0"/>
+  </g>
+  
+  <!-- Robot 2 -->
+  <g transform="translate(600, 680)">
+    <rect x="0" y="0" width="18" height="25" fill="#e040fb"/>
+    <rect x="4" y="4" width="3" height="3" fill="#06080f"/>
+    <rect x="11" y="4" width="3" height="3" fill="#06080f"/>
+    <rect x="1" y="25" width="5" height="8" fill="#c41fdf"/>
+    <rect x="12" y="25" width="5" height="8" fill="#c41fdf"/>
+  </g>
+  
+  <!-- Robot 3 -->
+  <g transform="translate(900, 660)">
+    <rect x="0" y="0" width="22" height="28" fill="#ffc400"/>
+    <rect x="5" y="6" width="4" height="4" fill="#06080f"/>
+    <rect x="13" y="6" width="4" height="4" fill="#06080f"/>
+    <rect x="2" y="28" width="6" height="9" fill="#ffab00"/>
+    <rect x="14" y="28" width="6" height="9" fill="#ffab00"/>
+  </g>
+  
+  <!-- Robot 4 -->
+  <g transform="translate(1200, 690)">
+    <rect x="0" y="0" width="19" height="26" fill="#00e676"/>
+    <rect x="4" y="5" width="3" height="3" fill="#06080f"/>
+    <rect x="12" y="5" width="3" height="3" fill="#06080f"/>
+    <rect x="1" y="26" width="5" height="8" fill="#00c853"/>
+    <rect x="13" y="26" width="5" height="8" fill="#00c853"/>
+  </g>
+  
+  <!-- Cars (Pixel Art) -->
+  <g transform="translate(500, 720)">
+    <rect x="0" y="0" width="40" height="20" fill="#ff5252"/>
+    <rect x="10" y="-8" width="20" height="10" fill="#ff6b6b"/>
+    <rect x="5" y="15" width="8" height="8" fill="#06080f"/>
+    <rect x="27" y="15" width="8" height="8" fill="#06080f"/>
+  </g>
+  
+  <g transform="translate(1100, 710)">
+    <rect x="0" y="0" width="45" height="22" fill="#00e5ff"/>
+    <rect x="12" y="-10" width="22" height="12" fill="#00f0ff"/>
+    <rect x="6" y="17" width="9" height="9" fill="#06080f"/>
+    <rect x="30" y="17" width="9" height="9" fill="#06080f"/>
+  </g>
+  
+  <!-- Trees (Pixel Art) -->
+  <g transform="translate(250, 580)">
+    <rect x="15" y="30" width="10" height="20" fill="#8b4513"/>
+    <rect x="0" y="10" width="40" height="25" fill="#228b22"/>
+    <rect x="5" y="0" width="30" height="15" fill="#32cd32"/>
+  </g>
+  
+  <g transform="translate(800, 590)">
+    <rect x="15" y="30" width="10" height="20" fill="#8b4513"/>
+    <rect x="0" y="10" width="40" height="25" fill="#228b22"/>
+    <rect x="5" y="0" width="30" height="15" fill="#32cd32"/>
+  </g>
+  
+  <g transform="translate(1400, 585)">
+    <rect x="15" y="30" width="10" height="20" fill="#8b4513"/>
+    <rect x="0" y="10" width="40" height="25" fill="#228b22"/>
+    <rect x="5" y="0" width="30" height="15" fill="#32cd32"/>
+  </g>
+  
+  <!-- DISTRICT CONTROL PANEL (Left Side UI) -->
+  <g transform="translate(40, 100)">
+    <!-- Panel Background -->
+    <rect x="0" y="0" width="380" height="500" fill="rgba(10,14,26,0.95)" rx="12" stroke="#00e5ff" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="380" height="60" fill="rgba(0,229,255,0.1)" rx="12"/>
+    <text x="20" y="35" font-family="monospace" font-size="20" fill="#00e5ff" font-weight="bold">🏙️ GANGCLAWCITY CITYVIEW</text>
+    
+    <!-- District List Header -->
+    <text x="20" y="90" font-family="monospace" font-size="14" fill="#e8eaf0" font-weight="bold">District Control Panel</text>
+    
+    <!-- District 1 -->
+    <g transform="translate(20, 110)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(0,229,255,0.1)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#00e5ff">District 1: Kuala Lumpur Central</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 14 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 2 -->
+    <g transform="translate(20, 160)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 2: Johor Bahru</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 9 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 3 -->
+    <g transform="translate(20, 210)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 3: Sepang Timun</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 7 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 4 -->
+    <g transform="translate(20, 260)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 4: Manitha Taranja</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 5 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 5 -->
+    <g transform="translate(20, 310)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 5: Kuala hoga</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 9 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 6 -->
+    <g transform="translate(20, 360)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 6: Kuala Lumpur</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 9 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 7 -->
+    <g transform="translate(20, 410)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 7: Sepang</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 9 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+    
+    <!-- District 8 -->
+    <g transform="translate(20, 460)">
+      <rect x="0" y="0" width="340" height="40" fill="rgba(255,255,255,0.05)" rx="4"/>
+      <text x="10" y="25" font-family="monospace" font-size="11" fill="#e8eaf0">District 8: Sepang & Cyberjaya</text>
+      <text x="10" y="38" font-family="monospace" font-size="9" fill="#00e676">Active, 8 NiagaBots</text>
+      <text x="300" y="28" font-family="monospace" font-size="16" fill="#ffc400">🤖</text>
+    </g>
+  </g>
+  
+  <!-- MAIN TITLE (Center Right) -->
+  <g transform="translate(960, 400)">
+    <text x="0" y="0" font-family="monospace" font-size="72" fill="#00e5ff" text-anchor="middle" filter="url(#neonGlow)">GANGCLAWCITY</text>
+    <text x="0" y="80" font-family="monospace" font-size="72" fill="#00e5ff" text-anchor="middle" filter="url(#neonGlow)">CITYVIEW</text>
+    <text x="0" y="140" font-family="monospace" font-size="28" fill="#00c8e0" text-anchor="middle">OPERATED BY NIAGABOT</text>
+  </g>
+  
+  <!-- Task Complete Notification -->
+  <g transform="translate(450, 50)">
+    <rect x="0" y="0" width="280" height="50" fill="rgba(0,230,118,0.9)" rx="8"/>
+    <text x="30" y="30" font-family="monospace" font-size="14" fill="#06080f" font-weight="bold">✓ Task Complete: SME Accounting Sync</text>
+  </g>
+  
+  <!-- Side Labels -->
+  <text x="20" y="540" font-family="monospace" font-size="12" fill="#00e5ff" transform="rotate(-90 20 540)">from: agent-town/</text>
+  <text x="1880" y="540" font-family="monospace" font-size="12" fill="#00e5ff" transform="rotate(90 1880 540)">to: GANGCLAWCITY CITYVIEW</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="3" fill="#00e5ff" opacity="0.5"/>
+  <circle cx="1820" cy="100" r="3" fill="#e040fb" opacity="0.5"/>
+  <circle cx="100" cy="980" r="3" fill="#ffc400" opacity="0.5"/>
+  <circle cx="1820" cy="980" r="3" fill="#00e5ff" opacity="0.5"/>
+</svg>
