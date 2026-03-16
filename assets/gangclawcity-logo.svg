@@ -1,0 +1,64 @@
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- GANGCLAWCITY Primary Logo -->
+  <!-- Brand Colors: Cyan #00e5ff, Magenta #e040fb, Gold #ffc400 -->
+  
+  <!-- Define Gradients -->
+  <defs>
+    <linearGradient id="cyberGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00e5ff"/>
+      <stop offset="50%" style="stop-color:#e040fb"/>
+      <stop offset="100%" style="stop-color:#ffc400"/>
+    </linearGradient>
+    
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00e5ff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00c8e0;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagon Icon -->
+  <g transform="translate(50, 50)">
+    <!-- Outer Glow -->
+    <path d="M 0,-40 L 34.64,-20 L 34.64,20 L 0,40 L -34.64,20 L -34.64,-20 Z" 
+          fill="none" 
+          stroke="url(#cyanGlow)" 
+          stroke-width="3"
+          opacity="0.3"/>
+    
+    <!-- Main Hexagon -->
+    <path d="M 0,-40 L 34.64,-20 L 34.64,20 L 0,40 L -34.64,20 L -34.64,-20 Z" 
+          fill="none" 
+          stroke="url(#cyberGradient)" 
+          stroke-width="3.5"
+          stroke-linejoin="round"/>
+    
+    <!-- Inner Hexagon (small) -->
+    <path d="M 0,-20 L 17.32,-10 L 17.32,10 L 0,20 L -17.32,10 L -17.32,-10 Z" 
+          fill="url(#cyberGradient)" 
+          opacity="0.2"/>
+    
+    <!-- Center Dot -->
+    <circle cx="0" cy="0" r="5" fill="url(#cyberGradient)"/>
+  </g>
+  
+  <!-- Wordmark: GANGCLAWCITY -->
+  <text x="110" y="55" 
+        font-family="Outfit, sans-serif" 
+        font-weight="800" 
+        font-size="32"
+        fill="#e8eaf0"
+        letter-spacing="-0.5">
+    GANGCLAW
+    <tspan fill="url(#cyberGradient)">CITY</tspan>
+  </text>
+  
+  <!-- Tagline (optional, smaller) -->
+  <text x="110" y="75" 
+        font-family="Outfit, sans-serif" 
+        font-weight="400" 
+        font-size="12"
+        fill="#8b92a8"
+        letter-spacing="0.5">
+    AI Workforce Platform
+  </text>
+</svg>

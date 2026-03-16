@@ -1,26 +1,51 @@
 :root {
-  --bg: #08121d;
+  /* Background Colors */
+  --bg: #06080f;
   --bg-deep: #050b13;
   --surface: rgba(11, 24, 37, 0.86);
   --surface-strong: #0e1c2b;
   --surface-soft: rgba(14, 28, 43, 0.62);
+  
+  /* Brand Colors - GANGCLAWCITY */
+  --cyan-500: #00e5ff;
+  --cyan-600: #00c8e0;
+  --magenta-500: #e040fb;
+  --magenta-600: #c41fdf;
+  --gold-500: #ffc400;
+  --gold-400: #ffd740;
+  
+  /* Accent Colors */
+  --accent: #00e5ff;
+  --accent-green: #00e676;
+  --accent-warm: #ffc400;
+  --accent-red: #ff5252;
+  
+  /* Text Colors */
+  --text: #e8eaf0;
+  --text-soft: #8b92a8;
+  --text-dim: #5c6280;
+  
+  /* Line Colors */
   --line: rgba(123, 153, 179, 0.18);
   --line-strong: rgba(28, 224, 255, 0.26);
-  --text: #edf4fb;
-  --text-soft: #b6c6d6;
-  --text-dim: #7f97ac;
-  --accent: #1ce0ff;
-  --accent-green: #7af3ab;
-  --accent-warm: #ffb14a;
-  --accent-red: #ff7272;
+  
+  /* Shadows & Radius */
   --shadow: 0 24px 80px rgba(2, 8, 16, 0.45);
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 28px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Layout */
   --max-width: 1200px;
-  --font-display: "Sora", "Segoe UI", sans-serif;
-  --font-body: "Plus Jakarta Sans", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+  
+  /* BRAND FONTS - Outfit + JetBrains Mono */
+  --font-display: "Outfit", "Segoe UI", sans-serif;
+  --font-body: "Outfit", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+  
+  /* Transitions */
   --transition: 180ms ease;
 }
 

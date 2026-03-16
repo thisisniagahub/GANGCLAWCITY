@@ -1,0 +1,22 @@
+<svg width="300" height="60" viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- GANGCLAWCITY Wordmark Only -->
+  <!-- For: Documents, Headers where icon is impractical -->
+  
+  <defs>
+    <linearGradient id="wordGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00e5ff"/>
+      <stop offset="100%" style="stop-color:#e040fb"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- GANGCLAWCITY Text -->
+  <text x="0" y="42" 
+        font-family="Outfit, sans-serif" 
+        font-weight="800" 
+        font-size="36"
+        fill="#e8eaf0"
+        letter-spacing="-1">
+    GANGCLAW
+    <tspan fill="url(#wordGradient)">CITY</tspan>
+  </text>
+</svg>
