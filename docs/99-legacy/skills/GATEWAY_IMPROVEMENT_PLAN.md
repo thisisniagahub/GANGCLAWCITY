@@ -1,6 +1,6 @@
 # 🔧 GATEWAY IMPROVEMENT PLAN
 
-**VPS:** 76.13.176.142  
+**VPS:** <VPS_IP>  
 **Goal:** Stable WebSocket connection for GANGCLAWCITY + NiagaBot  
 **Status:** OpenClaw Running ✅
 
@@ -65,7 +65,7 @@
 
 **Apply Changes:**
 ```bash
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 
 # Backup config
 cp /root/.openclaw/openclaw.json /root/.openclaw/openclaw.json.bak
@@ -91,7 +91,7 @@ openclaw gateway status
 #### **2.1: Install Nginx**
 
 ```bash
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 
 # Install Nginx
 apt update
@@ -113,7 +113,7 @@ systemctl status nginx
 # WSS Proxy for GANGCLAWCITY
 server {
     listen 8443 ssl;
-    server_name 76.13.176.142;
+    server_name <VPS_IP>;
 
     # SSL Certificates (self-signed for now, use Let's Encrypt for production)
     ssl_certificate /etc/nginx/ssl/gangclawcity-selfsigned.crt;
@@ -158,7 +158,7 @@ server {
 # Simple HTTP endpoint for health check
 server {
     listen 80;
-    server_name 76.13.176.142;
+    server_name <VPS_IP>;
 
     location /gateway-health {
         return 200 "OpenClaw Gateway OK\n";
@@ -177,7 +177,7 @@ mkdir -p /etc/nginx/ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout /etc/nginx/ssl/gangclawcity-selfsigned.key \
   -out /etc/nginx/ssl/gangclawcity-selfsigned.crt \
-  -subj "/C=MY/ST=Kuala Lumpur/L=KL/O=GANGCLAWCITY/CN=76.13.176.142"
+  -subj "/C=MY/ST=Kuala Lumpur/L=KL/O=GANGCLAWCITY/CN=<VPS_IP>"
 
 # Set permissions
 chmod 600 /etc/nginx/ssl/gangclawcity-selfsigned.key
@@ -228,23 +228,23 @@ ufw status
 **Dashboard (.env.local on Vercel):**
 ```
 # Option A: Direct WS (for testing)
-VITE_GATEWAY_URL=ws://76.13.176.142:18789
+VITE_GATEWAY_URL=ws://<VPS_IP>:18789
 
 # Option B: WSS Proxy (for production)
-VITE_GATEWAY_URL=wss://76.13.176.142:8443/ws
+VITE_GATEWAY_URL=wss://<VPS_IP>:8443/ws
 ```
 
 #### **3.2: Update Local Development**
 
 **File:** `openclaw-office/.env.local`
 ```
-VITE_GATEWAY_URL=ws://76.13.176.142:18789
+VITE_GATEWAY_URL=ws://<VPS_IP>:18789
 VITE_MOCK=false
 ```
 
 **OR with WSS:**
 ```
-VITE_GATEWAY_URL=wss://76.13.176.142:8443/ws
+VITE_GATEWAY_URL=wss://<VPS_IP>:8443/ws
 VITE_MOCK=false
 ```
 
@@ -372,7 +372,7 @@ sysctl -p
 npm install -g wscat
 
 # Test direct connection
-wscat -c ws://76.13.176.142:18789
+wscat -c ws://<VPS_IP>:18789
 
 # Should connect successfully
 ```
@@ -381,10 +381,10 @@ wscat -c ws://76.13.176.142:18789
 
 ```bash
 # Test WSS (allow self-signed cert)
-wscat -c wss://76.13.176.142:8443/ws -n
+wscat -c wss://<VPS_IP>:8443/ws -n
 
 # Or use curl for health check
-curl -k https://76.13.176.142:8443/health
+curl -k https://<VPS_IP>:8443/health
 ```
 
 ### **Test 3: From Browser**
@@ -400,7 +400,7 @@ curl -k https://76.13.176.142:8443/health
   <div id="messages"></div>
   
   <script>
-    const ws = new WebSocket('wss://76.13.176.142:8443/ws');
+    const ws = new WebSocket('wss://<VPS_IP>:8443/ws');
     
     ws.onopen = () => {
       document.getElementById('status').innerHTML = '✅ Connected!';
@@ -445,7 +445,7 @@ curl -k https://76.13.176.142:8443/health
 
 1. **Enable CORS on OpenClaw**
    ```bash
-   ssh root@76.13.176.142
+   ssh root@<VPS_IP>
    nano /root/.openclaw/openclaw.json
    # Add gateway.cors section
    openclaw gateway restart
@@ -453,7 +453,7 @@ curl -k https://76.13.176.142:8443/health
 
 2. **Test Connection**
    ```bash
-   wscat -c ws://76.13.176.142:18789
+   wscat -c ws://<VPS_IP>:18789
    ```
 
 3. **Deploy to Vercel**
@@ -495,8 +495,8 @@ curl -k https://76.13.176.142:8443/health
 ✅ Optimized for production
 
 Connection URLs:
-- Development: ws://76.13.176.142:18789
-- Production: wss://76.13.176.142:8443/ws
+- Development: ws://<VPS_IP>:18789
+- Production: wss://<VPS_IP>:8443/ws
 ```
 
 ---

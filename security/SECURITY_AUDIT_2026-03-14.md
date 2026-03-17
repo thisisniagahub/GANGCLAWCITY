@@ -63,7 +63,7 @@
 
 ```bash
 # 1. Generate new token on VPS
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 openclaw config set gateway.auth.token <NEW_SECURE_TOKEN>
 
 # 2. Update all environment variables

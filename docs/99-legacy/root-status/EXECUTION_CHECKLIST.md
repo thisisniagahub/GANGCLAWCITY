@@ -41,7 +41,7 @@
   → Reports security issues
 
 □ Step 2: If token found (it will be):
-  → SSH to VPS: ssh root@76.13.176.142
+  → SSH to VPS: ssh root@<VPS_IP>
   → Generate new token: openssl rand -hex 32
   → Update /root/.openclaw/openclaw.json
   → Restart gateway: openclaw gateway restart

@@ -26,8 +26,8 @@ echo.
 echo [2/5] Checking for sensitive data...
 echo.
 
-REM Quick check for token
-findstr /C:"<GATEWAY_TOKEN>" *.md >nul 2>&1
+REM Quick check for real token patterns, ignoring placeholders
+findstr /C:"GATEWAY_TOKEN=" *.md | findstr /V /C:"<GATEWAY_TOKEN>" >nul 2>&1
 if not errorlevel 1 (
     echo ⚠ WARNING: Gateway token found in files!
     echo.

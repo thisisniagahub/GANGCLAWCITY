@@ -100,7 +100,7 @@ mkdir docs config scripts security
 **Step A: Rotate on VPS**
 ```bash
 # SSH to VPS
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 
 # Generate new token
 openssl rand -hex 32

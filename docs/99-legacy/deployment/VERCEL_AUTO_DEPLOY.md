@@ -104,7 +104,7 @@ Install Command: pnpm install
 
 **Environment Variables:**
 ```
-VITE_GATEWAY_URL=ws://76.13.176.142:18789
+VITE_GATEWAY_URL=ws://<VPS_IP>:18789
 VITE_MOCK=false
 ```
 
@@ -176,7 +176,7 @@ cat > vercel.json << EOF
     }
   ],
   "env": {
-    "VITE_GATEWAY_URL": "ws://76.13.176.142:18789",
+    "VITE_GATEWAY_URL": "ws://<VPS_IP>:18789",
     "VITE_MOCK": "false"
   }
 }
@@ -313,7 +313,7 @@ https://gangclawcity-demo.vercel.app
 
 **Dashboard Project:**
 ```
-VITE_GATEWAY_URL = ws://76.13.176.142:18789
+VITE_GATEWAY_URL = ws://<VPS_IP>:18789
 VITE_MOCK = false
 ```
 
@@ -385,7 +385,7 @@ Add CORS:
 
 **Restart OpenClaw:**
 ```bash
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 openclaw gateway restart
 ```
 
@@ -542,7 +542,7 @@ Settings → Analytics → Enable
 ✅ Dashboard LIVE
    URL: https://gangclawcity-dashboard.vercel.app
    Status: Deployed from main branch
-   Connected to: ws://76.13.176.142:18789
+   Connected to: ws://<VPS_IP>:18789
 
 ✅ Agent Town LIVE
    URL: https://gangclawcity-demo.vercel.app

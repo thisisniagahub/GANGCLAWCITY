@@ -204,7 +204,7 @@ pnpm --dir agent-town dev
 **Immediate Action Required:**
 ```bash
 # 1. Rotate token on VPS
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 openssl rand -hex 32
 nano /root/.openclaw/openclaw.json
 
@@ -282,8 +282,8 @@ nano /root/.openclaw/openclaw.json
 Gateway_URL: wss://operator.gangniaga.my
 Gateway_Token: <GATEWAY_TOKEN> (ROTATE NOW!)
 Session_Key: agent:main:main
-VPS_IP: 76.13.176.142
-SSH_Command: ssh root@76.13.176.142
+VPS_IP: <VPS_IP>
+SSH_Command: ssh root@<VPS_IP>
 
 GitHub: https://github.com/thisisniagahub/GANGCLAWCITY
 Vercel: Deploying soon

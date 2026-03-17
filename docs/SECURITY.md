@@ -15,7 +15,7 @@
 **Rotate Token NOW:**
 ```bash
 # 1. SSH to VPS
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 
 # 2. Generate new token
 openssl rand -hex 32
@@ -160,7 +160,7 @@ VITE_SESSION_KEY=agent:main:main
 
 | System | Access Level | Authorization |
 |--------|--------------|---------------|
-| VPS (76.13.176.142) | SSH key only | Admin only |
+| VPS (<VPS_IP>) | SSH key only | Admin only |
 | Vercel Dashboard | SSO required | Dev team |
 | Gateway Config | Token required | Services only |
 | Database | Connection string | Backend only |
@@ -242,7 +242,7 @@ VITE_SESSION_KEY=agent:main:main
 
 1. **Rotate Token on VPS:**
    ```bash
-   ssh root@76.13.176.142
+   ssh root@<VPS_IP>
    openssl rand -hex 32
    nano /root/.openclaw/openclaw.json
    openclaw gateway restart

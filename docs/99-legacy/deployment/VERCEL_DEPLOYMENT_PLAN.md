@@ -33,7 +33,7 @@
          └─────────┬─────────┘
                    │
          WebSocket Connection
-         ws://76.13.176.142:18789
+         ws://<VPS_IP>:18789
 ```
 
 ---
@@ -98,7 +98,7 @@
     }
   ],
   "env": {
-    "VITE_GATEWAY_URL": "wss://76.13.176.142:18789",
+    "VITE_GATEWAY_URL": "wss://<VPS_IP>:18789",
     "VITE_MOCK": "false"
   },
   "routes": [
@@ -254,14 +254,14 @@ VITE_GATEWAY_URL=wss://api.gangclawcity.my/ws
 
 **Dashboard:**
 ```
-VITE_GATEWAY_URL=ws://76.13.176.142:18789
+VITE_GATEWAY_URL=ws://<VPS_IP>:18789
 VITE_MOCK=false
 ```
 
 **Agent Town:**
 ```
 NODE_ENV=production
-NEXT_PUBLIC_GATEWAY_URL=ws://76.13.176.142:18789
+NEXT_PUBLIC_GATEWAY_URL=ws://<VPS_IP>:18789
 ```
 
 **Landing Page:**
@@ -506,7 +506,7 @@ cat > vercel.json << EOF
     }
   ],
   "env": {
-    "VITE_GATEWAY_URL": "ws://76.13.176.142:18789",
+    "VITE_GATEWAY_URL": "ws://<VPS_IP>:18789",
     "VITE_MOCK": "false"
   }
 }
@@ -529,7 +529,7 @@ vercel --prod
 ✅ Dashboard: https://gangclawcity-dashboard.vercel.app
 ✅ Agent Town: https://gangclawcity-demo.vercel.app
 
-✅ Connected to: ws://76.13.176.142:18789
+✅ Connected to: ws://<VPS_IP>:18789
 ✅ Showing: NiagaBot agents
 ✅ SSL: Automatic ✅
 ✅ CDN: Global ✅

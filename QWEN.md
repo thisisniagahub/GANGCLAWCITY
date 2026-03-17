@@ -117,7 +117,7 @@ Security:
 
 ```yaml
 Server:
-  IP: 76.13.176.142
+  IP: <VPS_IP>
   Provider: Hetzner/DigitalOcean
   Location: EU (Frankfurt/Amsterdam)
   OS: Ubuntu 22.04.5 LTS
@@ -286,7 +286,7 @@ Token: <GATEWAY_TOKEN>
 Action_Required: IMMEDIATE ROTATION
 
 Rotation_Steps:
-  1. SSH to VPS: ssh root@76.13.176.142
+  1. SSH to VPS: ssh root@<VPS_IP>
   2. Generate new token: openssl rand -hex 32
   3. Update config: nano /root/.openclaw/openclaw.json
   4. Restart gateway: openclaw gateway restart
@@ -481,8 +481,8 @@ Organization:
 Gateway_URL: wss://operator.gangniaga.my
 Gateway_Token: <GATEWAY_TOKEN> (ROTATE NOW!)
 Session_Key: agent:main:main
-VPS_IP: 76.13.176.142
-SSH_Command: ssh root@76.13.176.142
+VPS_IP: <VPS_IP>
+SSH_Command: ssh root@<VPS_IP>
 
 Master_Script: gangclaw-agent.bat
 Security_Scan: security-scan.bat

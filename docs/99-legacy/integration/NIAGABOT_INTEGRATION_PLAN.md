@@ -2,7 +2,7 @@
 
 **Date:** March 14, 2026  
 **Status:** NiagaBot Running, GANGCLAWCITY Ready to Deploy  
-**VPS:** 76.13.176.142
+**VPS:** <VPS_IP>
 
 ---
 
@@ -103,7 +103,7 @@ NiagaBot + GANGCLAWCITY → Single OpenClaw Gateway
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                  VPS: 76.13.176.142                  │
+│                  VPS: <VPS_IP>                  │
 │                                                      │
 │  ┌────────────────────────────────────────────────┐ │
 │  │           OpenClaw Gateway (Port 18789)        │ │
@@ -147,7 +147,7 @@ NiagaBot + GANGCLAWCITY → Single OpenClaw Gateway
 
 #### **Step 1.1: Clean Disk Space**
 ```bash
-ssh root@76.13.176.142
+ssh root@<VPS_IP>
 
 # Remove old Docker images
 docker image prune -a --force
@@ -266,7 +266,7 @@ curl http://localhost:3000
 # Update openclaw-office .env
 cd /root/gangclawcity/openclaw-office
 cat > .env.local << EOF
-VITE_GATEWAY_URL=ws://76.13.176.142:18789
+VITE_GATEWAY_URL=ws://<VPS_IP>:18789
 VITE_GATEWAY_TOKEN=your-token-if-needed
 VITE_MOCK=false
 EOF
@@ -281,7 +281,7 @@ wget -qO- http://localhost:18789/health
 ```
 
 #### **Step 3.3: Check if NiagaBot Agents Appear**
-1. Open browser: `http://76.13.176.142:5180`
+1. Open browser: `http://<VPS_IP>:5180`
 2. Navigate to Dashboard
 3. Check if NiagaBot agents are visible
 4. Verify real-time updates
@@ -441,7 +441,7 @@ cd G:\PROJECT-4\GANGCLAWCITY
 
 # Update openclaw-office/.env.local
 cat > openclaw-office/.env.local << EOF
-VITE_GATEWAY_URL=ws://76.13.176.142:18789
+VITE_GATEWAY_URL=ws://<VPS_IP>:18789
 VITE_MOCK=false
 EOF
 
@@ -493,7 +493,7 @@ ufw deny 18789/tcp
    ```bash
    # Local testing
    cd G:\PROJECT-4\GANGCLAWCITY\openclaw-office
-   echo "VITE_GATEWAY_URL=ws://76.13.176.142:18789" > .env.local
+   echo "VITE_GATEWAY_URL=ws://<VPS_IP>:18789" > .env.local
    echo "VITE_MOCK=false" >> .env.local
    pnpm dev
    ```

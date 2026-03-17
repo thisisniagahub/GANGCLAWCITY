@@ -12,19 +12,25 @@ cd /d %~dp0
 
 setlocal enabledelayedexpansion
 
-REM Known token to search for
-set "TOKEN=<GATEWAY_TOKEN>"
+REM Pattern to search for actual tokens (not placeholders)
+set "SEARCH1=GATEWAY_TOKEN="
+set "SEARCH2=da8aa838"
 
 echo [1/3] Scanning for exposed gateway token...
 echo.
 
 set "FOUND=0"
 
-REM Search in .md files
+REM Search in .md files for actual hex tokens or assignments, ignoring the placeholder
 for %%f in (*.md docs\*.md docs\*\*.md) do (
-    findstr /C:"%TOKEN%" "%%f" >nul 2>&1
+    findstr /C:"%SEARCH1%" "%%f" | findstr /V /C:"<GATEWAY_TOKEN>" >nul 2>&1
     if not errorlevel 1 (
-        echo   ⚠ FOUND in: %%f
+        echo   ⚠ FOUND token assignment in: %%f
+        set /a FOUND+=1
+    )
+    findstr /C:"%SEARCH2%" "%%f" >nul 2>&1
+    if not errorlevel 1 (
+        echo   ⚠ FOUND specific exposed token in: %%f
         set /a FOUND+=1
     )
 )
@@ -78,7 +84,7 @@ if %FOUND% EQU 0 (
     echo CRITICAL ACTION REQUIRED:
     echo.
     echo 1. Rotate gateway token on VPS:
-    echo    ssh root@76.13.176.142
+    echo    ssh root@<VPS_IP>
     echo    openssl rand -hex 32
     echo    nano /root/.openclaw/openclaw.json
     echo.

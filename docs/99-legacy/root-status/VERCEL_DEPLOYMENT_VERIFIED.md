@@ -271,7 +271,7 @@ Environment Variables: Not set yet (pending token rotation)
 
 ```
 ⏳ Token Rotation on VPS
-   - SSH to VPS: ssh root@76.13.176.142
+   - SSH to VPS: ssh root@<VPS_IP>
    - Generate new token: openssl rand -hex 32
    - Update OpenClaw config
    - Restart gateway
