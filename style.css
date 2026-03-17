@@ -178,6 +178,12 @@ main,
   min-width: 0;
 }
 
+.brand-logo {
+  height: 40px;
+  width: auto;
+  image-rendering: crisp-edges;
+}
+
 .brand-mark {
   display: grid;
   place-items: center;
