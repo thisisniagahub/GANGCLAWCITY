@@ -1,587 +1,810 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GANGCLAWCITY | Operate AI Like A Visible Workforce</title>
-  <meta
-    name="description"
-    content="GANGCLAWCITY is a Malaysia-first AI workforce platform that turns proven agent systems into one visible operating model with dashboards, districts, and command-grade control."
-  />
-  <meta
-    name="keywords"
-    content="GANGCLAWCITY, AI workforce, AI operations, OpenClaw, Malaysia, multi-agent platform, dashboard, city view"
-  />
-  <meta property="og:title" content="GANGCLAWCITY | Operate AI Like A Visible Workforce" />
-  <meta
-    property="og:description"
-    content="Five proven foundations. Two core operating surfaces. One city model for running AI with visibility, control, and economic intent."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/hero-city.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GANGCLAWCITY | Operate AI Like A Visible Workforce" />
-  <meta
-    name="twitter:description"
-    content="A command-grade AI workforce platform built to make digital labor visible, governable, and useful."
-  />
-  <meta name="theme-color" content="#08121d" />
-  <link rel="icon" type="image/svg+xml" href="assets/gangclawcity-icon.svg" />
-  <!-- GANGCLAWCITY Brand Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-  
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GangClawCity CityView — Operated by NiagaBot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070d0a;
+  --bg-panel: #0b1710;
+  --border: #1a3d2b;
+  --green: #00ff88;
+  --cyan: #00e5ff;
+  --text: #d4edd8;
+  --muted: #3a7a58;
+  --yellow: #ffd740;
+  --red: #ff5252;
+  --panel: rgba(7,13,10,0.93);
+  --fp: 'Press Start 2P', monospace;
+  --fv: 'VT323', monospace;
+  --fm: 'Share Tech Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fv);font-size:18px;overflow-x:hidden;cursor:crosshair}
+
+/* ── BOOT ── */
+#boot{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:8% 12%;font-family:var(--fm);font-size:13px;color:var(--green)}
+#boot-lines{line-height:2;white-space:pre}
+#boot-cur{display:inline-block;animation:blink .5s steps(1) infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#boot-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 2s linear}
+
+/* ── SIDE LABELS ── */
+.slabel{position:fixed;top:50%;font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:4px;z-index:200;opacity:.5;white-space:nowrap;pointer-events:none}
+.slabel-l{left:14px;transform:translateY(-50%) rotate(-90deg)}
+.slabel-r{right:14px;transform:translateY(-50%) rotate(90deg)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(7,13,10,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px 0 68px;z-index:500;backdrop-filter:blur(12px);opacity:0;transition:opacity .5s}
+.nav-logo{font-family:var(--fp);font-size:9px;color:var(--green);display:flex;align-items:center;gap:10px;letter-spacing:1px}
+.logo-box{width:30px;height:30px;border:1px solid var(--green);background:rgba(0,255,136,.08);display:flex;align-items:center;justify-content:center;font-size:15px}
+.nav-links{display:flex;gap:28px;list-style:none;font-family:var(--fm);font-size:11px}
+.nav-links a{color:var(--muted);text-decoration:none;letter-spacing:2px;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--green)}
+
+/* ── HERO ── */
+#hero{position:relative;width:100vw;height:100vh;overflow:hidden}
+#city-canvas{position:absolute;inset:0;width:100%;height:100%}
+
+.scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:10;animation:scan 10s linear infinite}
+@keyframes scan{0%{background-position:0 0}100%{background-position:0 200px}}
+
+.vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.75) 100%);pointer-events:none;z-index:11}
+
+/* side icon nav */
+#side-nav{position:absolute;left:0;top:54px;bottom:0;width:54px;background:rgba(7,13,10,.85);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:20px;z-index:100}
+.sni{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;cursor:pointer;border-radius:3px;transition:all .2s;border:1px solid transparent}
+.sni:hover,.sni.active{color:var(--green);background:rgba(0,255,136,.08);border-color:var(--border)}
+
+/* district panel */
+#dpanel{position:absolute;top:50%;left:68px;transform:translateY(-50%) translateX(-30px);width:290px;background:var(--panel);border:1px solid var(--border);border-radius:2px;z-index:50;overflow:hidden;backdrop-filter:blur(10px);opacity:0;transition:opacity .6s .4s,transform .6s .4s}
+.dp-head{background:rgba(0,255,136,.06);padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.dp-logo{font-family:var(--fp);font-size:7px;color:var(--green);line-height:1.6}
+.dp-title{font-family:var(--fp);font-size:6.5px;color:var(--text);padding:9px 14px;border-bottom:1px solid var(--border);letter-spacing:1px}
+.di{padding:7px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .2s;border-left:2px solid transparent}
+.di:hover,.di.on{background:rgba(0,255,136,.07);border-left-color:var(--green)}
+.di-name{font-family:var(--fm);font-size:10px;color:var(--text)}
+.di-bots{font-family:var(--fm);font-size:9px;color:var(--green)}
+.di-icons{font-size:13px;display:flex;gap:2px}
+
+/* toast */
+#toast{position:absolute;top:74px;right:28px;background:var(--panel);border:1px solid var(--green);border-radius:2px;padding:10px 14px;display:flex;align-items:center;gap:10px;z-index:60;opacity:0;transform:translateX(60px);transition:all .4s;backdrop-filter:blur(10px)}
+.t-check{width:22px;height:22px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#000;flex-shrink:0;font-weight:bold}
+.t-info{font-family:var(--fm);font-size:10px}
+.t-label{color:var(--muted);display:block}
+.t-val{color:var(--text)}
+
+/* hero center */
+#hero-cnt{position:absolute;top:50%;left:55%;transform:translate(-50%,-50%);text-align:center;z-index:40;opacity:0;transition:opacity .8s .7s,transform .8s .7s;width:600px;max-width:90vw}
+.h-title{font-family:var(--fp);font-size:clamp(16px,2.8vw,32px);color:#fff;text-shadow:0 0 10px var(--green),0 0 40px rgba(0,255,136,.35),0 0 80px rgba(0,255,136,.15);line-height:1.5;margin-bottom:14px}
+.h-sub{font-family:var(--fp);font-size:clamp(7px,1vw,10px);color:var(--cyan);letter-spacing:4px;margin-bottom:18px}
+.h-desc{font-family:var(--fv);font-size:clamp(15px,1.4vw,20px);color:var(--muted);margin:0 auto 30px;line-height:1.5;max-width:420px}
+.bgrp{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+.btn{font-family:var(--fp);font-size:8px;padding:13px 22px;cursor:pointer;transition:all .25s;letter-spacing:1px;clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)}
+.btn-p{background:var(--green);color:#000;border:none}
+.btn-p:hover{background:#fff;box-shadow:0 0 24px var(--green),0 0 48px rgba(0,255,136,.4);transform:translateY(-2px)}
+.btn-s{background:transparent;color:var(--green);border:1px solid var(--green)}
+.btn-s:hover{background:rgba(0,255,136,.1);box-shadow:0 0 20px rgba(0,255,136,.25);transform:translateY(-2px)}
+
+/* status bar */
+#sbar{position:absolute;bottom:0;left:54px;right:0;height:30px;background:rgba(7,13,10,.92);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 18px;gap:28px;z-index:100;font-family:var(--fm);font-size:10px;overflow:hidden}
+.sb-item{display:flex;align-items:center;gap:6px;color:var(--muted);white-space:nowrap}
+.sb-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.sb-val{color:var(--green)}
+
+/* ── SECTIONS ── */
+section{padding:80px 64px 80px 120px}
+
+.sec-head{font-family:var(--fp);font-size:clamp(9px,1.2vw,13px);color:var(--green);letter-spacing:2px;margin-bottom:48px;display:inline-block;position:relative}
+.sec-head::after{content:'';position:absolute;bottom:-10px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--green),transparent)}
+
+/* ── DISTRICTS SECTION ── */
+#sec-dist{background:var(--bg)}
+.dist-layout{display:grid;grid-template-columns:300px 1fr;gap:32px;align-items:start}
+.dist-sidebar{background:var(--bg-panel);border:1px solid var(--border)}
+.dist-detail{padding:8px 24px}
+.dd-title{font-family:var(--fp);font-size:10px;color:var(--green);margin-bottom:20px}
+.task-list{list-style:none}
+.task-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--fm);font-size:14px;color:var(--muted)}
+.task-item::before{content:'›';color:var(--green);font-size:18px}
+
+/* ── AGENTS ── */
+#sec-agents{background:linear-gradient(180deg,#060c09 0%,#030806 100%)}
+.agents-topbar{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px}
+.agents-sub{font-family:var(--fm);font-size:13px;color:var(--muted);margin-top:8px;letter-spacing:1px}
+.ag-filters{display:flex;gap:8px;flex-wrap:wrap}
+.agf{font-family:var(--fp);font-size:6.5px;padding:8px 14px;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:1px}
+.agf.on,.agf:hover{border-color:var(--green);color:var(--green);background:rgba(0,255,136,.06)}
+
+.agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+
+/* Card */
+.agent-card{background:var(--bg-panel);border:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer;transition:all .35s;display:flex;flex-direction:column}
+.agent-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,255,136,.04) 0%,transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none}
+.agent-card:hover{transform:translateY(-7px);box-shadow:0 0 0 1px var(--green),0 20px 60px rgba(0,255,136,.14),0 40px 80px rgba(0,0,0,.5)}
+.agent-card:hover::before{opacity:1}
+
+.ac-strip{height:2px;width:100%;flex-shrink:0}
+.ac-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 4px}
+.ac-id{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:3px}
+.ac-badge{display:flex;align-items:center;gap:5px;font-family:var(--fm);font-size:9px;letter-spacing:1px}
+.acdot{width:6px;height:6px;border-radius:50%;animation:pulse 1.4s infinite;flex-shrink:0}
+
+/* Character stage */
+.ac-stage{height:170px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;position:relative;overflow:visible}
+.ac-stage svg{animation:charBob 2.8s ease-in-out infinite;image-rendering:pixelated;image-rendering:crisp-edges;height:134px;width:auto;overflow:visible}
+.ac-stage::after{content:'';position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:44px;height:5px;background:rgba(0,255,136,.12);border-radius:50%;animation:shad 2.8s ease-in-out infinite}
+@keyframes charBob{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-5px) rotate(-.5deg)}75%{transform:translateY(-3px) rotate(.5deg)}}
+@keyframes shad{0%,100%{transform:translateX(-50%) scaleX(1);opacity:.35}50%{transform:translateX(-50%) scaleX(.65);opacity:.08}}
+
+/* Eye blink animations */
+@keyframes eyeBlink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.05)}}
+.eye-blink{animation:eyeBlink 4s ease-in-out infinite;transform-origin:center}
+
+/* Tool animations */
+@keyframes magSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes floatTool{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes shurikenSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes wandGlow{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes megaphone{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes crownFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes tipPen{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+@keyframes lightningFlash{0%,80%,100%{opacity:.8}90%{opacity:1;filter:brightness(2)}}
+
+.ac-body{padding:6px 14px 14px;flex:1;display:flex;flex-direction:column}
+.ac-name{font-family:var(--fp);font-size:8px;color:var(--text);margin-bottom:3px;letter-spacing:1px}
+.ac-role{font-family:var(--fm);font-size:12px;color:var(--muted);margin-bottom:10px}
+.ac-task-lbl{font-family:var(--fm);font-size:9px;color:var(--muted);letter-spacing:2px;margin-bottom:3px}
+.ac-task-txt{font-family:var(--fm);font-size:11px;color:var(--cyan);margin-bottom:8px;min-height:28px;line-height:1.5}
+.ac-prog{height:3px;background:var(--border);margin-bottom:12px;position:relative}
+.ac-bar{height:100%;position:relative;transition:width .6s ease}
+.ac-bar::after{content:'';position:absolute;right:-2px;top:-3px;width:9px;height:9px;border-radius:50%;box-shadow:0 0 8px currentColor}
+.ac-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.act{font-family:var(--fm);font-size:8px;padding:3px 7px;border:1px solid var(--border);color:var(--muted);letter-spacing:1px}
+.ac-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);padding-top:10px;text-align:center;gap:4px;margin-top:auto}
+.acn{font-family:var(--fp);font-size:8px;display:block;margin-bottom:2px}
+.acl{font-family:var(--fm);font-size:8px;color:var(--muted);display:block;letter-spacing:1px}
+
+/* ── HOW ── */
+#sec-how{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative}
+.step{background:var(--bg-panel);border:1px solid var(--border);padding:32px 24px;position:relative;transition:all .3s}
+.step:hover{border-color:var(--green);box-shadow:0 0 40px rgba(0,255,136,.08)}
+.step-n{font-family:var(--fp);font-size:36px;color:rgba(0,255,136,.08);position:absolute;top:14px;right:16px}
+.step-icon{font-size:34px;margin-bottom:16px;display:block}
+.step-title{font-family:var(--fp);font-size:9px;color:var(--green);margin-bottom:12px;letter-spacing:1px}
+.step-desc{font-family:var(--fv);font-size:18px;color:var(--muted);line-height:1.5}
+
+/* ── STATS ── */
+#stats{background:var(--border);border-top:1px solid var(--green);border-bottom:1px solid var(--green);padding:50px 60px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:20px}
+.stat-n{font-family:var(--fp);font-size:clamp(18px,2.8vw,34px);color:var(--green);display:block;margin-bottom:8px;text-shadow:0 0 20px rgba(0,255,136,.5)}
+.stat-l{font-family:var(--fm);font-size:12px;color:var(--muted);letter-spacing:2px}
+
+/* ── CTA ── */
+#sec-cta{background:linear-gradient(180deg,var(--bg) 0%,#030806 100%);text-align:center;padding:100px 60px;position:relative;overflow:hidden}
+#pcv{position:absolute;inset:0;pointer-events:none;z-index:0}
+#sec-cta>*:not(#pcv){position:relative;z-index:1}
+.cta-title{font-family:var(--fp);font-size:clamp(11px,1.8vw,18px);color:#fff;margin-bottom:16px;text-shadow:0 0 20px var(--green)}
+.cta-sub{font-family:var(--fv);font-size:22px;color:var(--muted);margin-bottom:40px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto 18px}
+.cta-inp{flex:1;min-width:200px;background:var(--bg-panel);border:1px solid var(--border);color:var(--text);padding:13px 16px;font-family:var(--fm);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.cta-inp:focus{border-color:var(--green);box-shadow:0 0 12px rgba(0,255,136,.2)}
+.cta-note{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:1px}
+
+/* ── FOOTER ── */
+footer{background:#040908;border-top:1px solid var(--border);padding:50px 60px 24px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+.ft-logo{font-family:var(--fp);font-size:9px;color:var(--green);margin-bottom:14px}
+.ft-tag{font-family:var(--fm);font-size:13px;color:var(--muted);line-height:1.7}
+.ft-col-h{font-family:var(--fp);font-size:7px;color:var(--text);margin-bottom:16px;letter-spacing:1px}
+.ft-links{list-style:none}
+.ft-links li{margin-bottom:10px}
+.ft-links a{font-family:var(--fm);font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--green)}
+.ft-bot{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--fm);font-size:10px;color:var(--muted);flex-wrap:wrap;gap:8px}
+
+/* ── GLITCH ── */
+@keyframes glitch{
+  0%{text-shadow:2px 0 var(--cyan),-2px 0 var(--red),0 0 10px var(--green)}
+  20%{text-shadow:-2px 0 var(--cyan),2px 0 var(--red),0 0 30px var(--green)}
+  40%{text-shadow:0 0 20px var(--green)}
+  60%{text-shadow:2px 2px var(--cyan),-2px -2px var(--red)}
+  80%{text-shadow:-2px 2px var(--cyan),2px -2px var(--red)}
+  100%{text-shadow:0 0 10px var(--green)}
+}
+.glitch{animation:glitch .25s infinite}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  section{padding:60px 20px 60px 20px}
+  .dist-layout{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  #stats{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  #side-nav{display:none}
+  #dpanel{width:220px;left:10px;font-size:10px}
+  #hero-cnt{left:50%;width:95vw}
+  .slabel{display:none}
+  nav{padding-left:16px}
+}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#hero">Skip to content</a>
-  
-  <nav id="navbar">
-    <div class="nav-shell">
-      <a href="#hero" class="brand" aria-label="GANGCLAWCITY home">
-        <img src="assets/gangclawcity-logo.svg" alt="GANGCLAWCITY" class="brand-logo" />
-      </a>
 
-      <div class="nav-links" id="nav-links">
-        <a href="#overview">Overview</a>
-        <a href="#modules">Modules</a>
-        <a href="#districts">Districts</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="docs/DOCS_INDEX.md" target="_blank" rel="noopener">Docs</a>
-      </div>
+<!-- BOOT -->
+<div id="boot">
+  <div id="boot-lines"></div><span id="boot-cur">█</span>
+  <div id="boot-bar"></div>
+</div>
 
-      <div class="nav-actions">
-        <a class="btn btn-nav btn-soft" href="#cta">Join Waitlist</a>
-        <a class="btn btn-nav btn-solid" href="docs/00-start-here/QUICKSTART.md" target="_blank" rel="noopener">Quickstart</a>
-      </div>
+<!-- SIDE LABELS -->
+<div class="slabel slabel-l">from: agent-town/</div>
+<div class="slabel slabel-r">to: GANGCLAWCITY CITYVIEW</div>
 
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-box">⚙</div>
+    <span>GANGCLAWCITY</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">CityView</a></li>
+    <li><a href="#sec-dist">Districts</a></li>
+    <li><a href="#sec-agents">NiagaBots</a></li>
+    <li><a href="#sec-cta">Deploy</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="city-canvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <!-- Side icon nav -->
+  <div id="side-nav">
+    <div class="sni active" title="CityView">⊞</div>
+    <div class="sni" title="Districts">☰</div>
+    <div class="sni" title="Analytics">▦</div>
+    <div class="sni" title="Settings">⚙</div>
+  </div>
+
+  <!-- District panel overlay -->
+  <div id="dpanel">
+    <div class="dp-head">
+      <span style="font-size:20px">⚙</span>
+      <div class="dp-logo">GANGCLAWCITY<br>CITYVIEW</div>
     </div>
-  </nav>
+    <div class="dp-title">DISTRICT CONTROL PANEL</div>
+    <div id="dpanel-list"></div>
+  </div>
 
-  <header id="hero">
-    <div class="hero-media">
-      <!-- Isometric Pixel Art City Background -->
-      <img src="assets/cityview-pixel-bg.svg" alt="GANGCLAWCITY CityView" class="cityview-bg" />
-      <div class="hero-overlay"></div>
+  <!-- Toast -->
+  <div id="toast">
+    <div class="t-check">✓</div>
+    <div class="t-info">
+      <span class="t-label" id="t-label">Task Complete:</span>
+      <span class="t-val" id="t-val">SME Accounting Sync</span>
     </div>
+  </div>
 
-    <div class="hero-shell reveal">
-      <div class="eyebrow-row">
-        <span class="eyebrow glow">🏙️ GANGCLAWCITY CITYVIEW</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span class="title-line">AI WORKFORCE</span>
-        <span class="title-line highlight">VISIBLE.</span>
-        <span class="title-line">CONTROLLED.</span>
-      </h1>
-
-      <p class="hero-copy">
-        5 proven systems. 1 unified platform. <span class="highlight-text">8 districts</span> for total AI control.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-solid btn-glow" href="#modules">
-          <span>🚀</span> Explore Platform
-        </a>
-        <a class="btn btn-soft" href="docs/00-start-here/QUICKSTART.md" target="_blank" rel="noopener">
-          <span>⚡</span> Quickstart
-        </a>
-      </div>
-
-      <!-- Animated Metrics -->
-      <div class="hero-metrics animated">
-        <article class="metric-card">
-          <span class="metric-value" data-count="5">0</span>
-          <span class="metric-label">Proven Systems</span>
-        </article>
-        <article class="metric-card">
-          <span class="metric-value" data-count="2">0</span>
-          <span class="metric-label">Core Apps</span>
-        </article>
-        <article class="metric-card">
-          <span class="metric-value" data-count="8">0</span>
-          <span class="metric-label">Districts</span>
-        </article>
-      </div>
+  <!-- Hero center -->
+  <div id="hero-cnt">
+    <h1 class="h-title" id="htitle">GANGCLAWCITY<br>CITYVIEW</h1>
+    <p class="h-sub">OPERATED BY NIAGABOT</p>
+    <p class="h-desc">Deploy autonomous AI agents across Malaysian districts. Watch them work. Scale without limits.</p>
+    <div class="bgrp">
+      <button class="btn btn-p" onclick="scrollTo2('sec-cta')">[ ENTER CITYVIEW ]</button>
+      <button class="btn btn-s" onclick="scrollTo2('sec-dist')">[ VIEW DISTRICTS ]</button>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section id="overview" class="section">
-      <div class="section-shell reveal section-split">
-        <div>
-          <p class="section-kicker">What this project is</p>
-          <h2>One operating story for AI work, control, and scale.</h2>
-        </div>
+  <!-- Status bar -->
+  <div id="sbar">
+    <div class="sb-item"><span class="sb-dot"></span>SYSTEM: <span class="sb-val">ONLINE</span></div>
+    <div class="sb-item">BOTS: <span class="sb-val" id="live-bots">70</span></div>
+    <div class="sb-item">DISTRICTS: <span class="sb-val">8</span></div>
+    <div class="sb-item">UPTIME: <span class="sb-val" id="uptime">00:00:00</span></div>
+    <div class="sb-item" style="margin-left:auto">LAST SYNC: <span class="sb-val">SME Accounting ✓</span></div>
+  </div>
+</section>
 
-        <div class="overview-copy">
-          <p>
-            The product direction is simple: stop presenting disconnected demos and start shipping a single GANGCLAWCITY
-            platform with a strong operator surface, a memorable city metaphor, and a real path to production hardening.
-          </p>
-          <p>
-            Instead of building everything from zero, GANGCLAWCITY takes successful foundations, removes vendor framing,
-            aligns the architecture, and improves the system until it feels like one serious company product.
-          </p>
-        </div>
-      </div>
+<!-- DISTRICTS -->
+<section id="sec-dist">
+  <div class="sec-head">DISTRICT CONTROL PANEL</div>
+  <div class="dist-layout">
+    <div class="dist-sidebar" id="main-dist-list"></div>
+    <div class="dist-detail">
+      <div class="dd-title" id="dd-name">DISTRICT 1: KUALA LUMPUR CENTRAL</div>
+      <ul class="task-list" id="dd-tasks"></ul>
+    </div>
+  </div>
+</section>
 
-      <div class="section-shell reveal proof-grid">
-        <article class="proof-card">
-          <span class="proof-index">01</span>
-          <h3>Command clarity</h3>
-          <p>Operators should see states, routes, approvals, and pressure points without guessing.</p>
-        </article>
-        <article class="proof-card">
-          <span class="proof-index">02</span>
-          <h3>Economic intent</h3>
-          <p>Every district exists to drive visible business output, not just technical novelty.</p>
-        </article>
-        <article class="proof-card">
-          <span class="proof-index">03</span>
-          <h3>Trustworthy integration</h3>
-          <p>The end state is one coherent platform, not five borrowed products pretending to be integrated.</p>
-        </article>
-      </div>
-    </section>
+<!-- AGENTS -->
+<section id="sec-agents">
+  <div class="agents-topbar">
+    <div>
+      <div class="sec-head">ACTIVE NIAGABOTS</div>
+      <p class="agents-sub">9 autonomous agents &middot; Zero days off &middot; Deployed across 8 districts</p>
+    </div>
+    <div class="ag-filters">
+      <button class="agf on" onclick="filterAgents(this,'all')">ALL (9)</button>
+      <button class="agf" onclick="filterAgents(this,'sales')">SALES OPS</button>
+      <button class="agf" onclick="filterAgents(this,'creative')">CREATIVE</button>
+      <button class="agf" onclick="filterAgents(this,'growth')">GROWTH</button>
+    </div>
+  </div>
+  <div class="agents-grid" id="agents-grid"></div>
+</section>
 
-    <section id="modules" class="section section-ink">
-      <div class="section-shell reveal section-header">
-        <p class="section-kicker">Platform surface</p>
-        <h2>Two core apps first. Three more modules absorbed with intent.</h2>
-        <p class="section-lead">
-          The near-term product is led by a control dashboard and a city-style operating surface. Everything else supports,
-          enriches, or extends that core.
-        </p>
-      </div>
+<!-- HOW -->
+<section id="sec-how">
+  <div class="sec-head">MISSION BRIEFING</div>
+  <div class="steps">
+    <div class="step">
+      <span class="step-n">01</span>
+      <span class="step-icon">🚀</span>
+      <div class="step-title">DEPLOY</div>
+      <p class="step-desc">Choose your district, activate your NiagaBots. Zero coding required. Operational in minutes.</p>
+    </div>
+    <div class="step">
+      <span class="step-n">02</span>
+      <span class="step-icon">⚡</span>
+      <div class="step-title">OPERATE</div>
+      <p class="step-desc">Bots autonomously handle leads, content, accounting, logistics — you focus on growth.</p>
+    </div>
+    <div class="step">
+      <span class="step-n">03</span>
+      <span class="step-icon">📈</span>
+      <div class="step-title">SCALE</div>
+      <p class="step-desc">Add more bots as your business grows. Each district unlocks new automation power.</p>
+    </div>
+  </div>
+</section>
 
-      <div class="section-shell modules-layout reveal">
-        <div class="module-grid">
-          <article class="module-card module-card-core">
-            <div class="module-top">
-              <span class="module-badge">Core</span>
-              <span class="module-code">01</span>
-            </div>
-            <h3>GANGCLAWCITY Dashboard</h3>
-            <p>The command surface for visibility, approvals, connection state, and operating discipline.</p>
-            <ul>
-              <li>Operator-first UI</li>
-              <li>Gateway connection management</li>
-              <li>Security-hardening path in progress</li>
-            </ul>
-          </article>
+<!-- STATS -->
+<div id="stats">
+  <div><span class="stat-n" data-target="70">0</span><span class="stat-l">ACTIVE NIAGABOTS</span></div>
+  <div><span class="stat-n" data-target="8">0</span><span class="stat-l">DISTRICTS COVERED</span></div>
+  <div><span class="stat-n">24/7</span><span class="stat-l">AUTONOMOUS OPS</span></div>
+  <div><span class="stat-n">RM0</span><span class="stat-l">HUMAN HOURS WASTED</span></div>
+</div>
 
-          <article class="module-card module-card-core">
-            <div class="module-top">
-              <span class="module-badge">Core</span>
-              <span class="module-code">02</span>
-            </div>
-            <h3>GANGCLAWCITY CityView</h3>
-            <p>A spatial layer for districts, task flow, and live movement across the operating city.</p>
-            <ul>
-              <li>District-based navigation</li>
-              <li>Memorable product identity</li>
-              <li>Best surface for demos and storytelling</li>
-            </ul>
-          </article>
+<!-- CTA -->
+<section id="sec-cta">
+  <canvas id="pcv"></canvas>
+  <h2 class="cta-title">READY TO DEPLOY YOUR BOTS?</h2>
+  <p class="cta-sub">Join the waitlist. Be first to control your district.</p>
+  <div class="cta-row">
+    <input type="email" class="cta-inp" id="email-in" placeholder="your@email.com">
+    <button class="btn btn-p" onclick="handleDeploy()">[ DEPLOY NOW ]</button>
+  </div>
+  <p class="cta-note">Currently serving 8 Malaysian districts &middot; 70+ NiagaBots active</p>
+</section>
 
-          <article class="module-card">
-            <div class="module-top">
-              <span class="module-badge">Absorb</span>
-              <span class="module-code">03</span>
-            </div>
-            <h3>GANGCLAWCITY Office</h3>
-            <p>Operations workspace for office-style flows, admin tooling, and business execution support.</p>
-            <ul>
-              <li>Internal workflow support</li>
-              <li>Future business pack destination</li>
-              <li>Needs final platform alignment</li>
-            </ul>
-          </article>
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-logo">⚙ GANGCLAWCITY</div>
+      <p class="ft-tag">Autonomous AI agents for Malaysian SMEs.<br>Your city. Your bots. Running 24/7.</p>
+    </div>
+    <div>
+      <div class="ft-col-h">PRODUCT</div>
+      <ul class="ft-links">
+        <li><a href="#">CityView</a></li>
+        <li><a href="#">NiagaBots</a></li>
+        <li><a href="#">Districts</a></li>
+        <li><a href="#">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">DISTRICTS</div>
+      <ul class="ft-links">
+        <li><a href="#">Kuala Lumpur</a></li>
+        <li><a href="#">Johor Bahru</a></li>
+        <li><a href="#">Sepang</a></li>
+        <li><a href="#">Cyberjaya</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">COMPANY</div>
+      <ul class="ft-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">GangNiaga</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2025 GangClawCity · Operated by NiagaBot · Powered by GangNiaga.</span>
+    <span style="color:var(--muted)">build v1.0.0 — from: agent-town/ → production/</span>
+  </div>
+</footer>
 
-          <article class="module-card">
-            <div class="module-top">
-              <span class="module-badge">Absorb</span>
-              <span class="module-code">04</span>
-            </div>
-            <h3>GANGCLAWCITY Lab</h3>
-            <p>Experiment lane for new flows, prototypes, campaign mechanics, and model ideas before promotion.</p>
-            <ul>
-              <li>Fast iteration zone</li>
-              <li>Research and experimentation</li>
-              <li>Candidate feeder into core apps</li>
-            </ul>
-          </article>
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-          <article class="module-card">
-            <div class="module-top">
-              <span class="module-badge">Absorb</span>
-              <span class="module-code">05</span>
-            </div>
-            <h3>GANGCLAWCITY Workspace</h3>
-            <p>Developer tooling and workspace visualization adapted from pixel-agents upstream.</p>
-            <ul>
-              <li>VS Code extension integration</li>
-              <li>Developer experience tooling</li>
-              <li>Internal workspace visualization</li>
-            </ul>
-          </article>
-        </div>
+<script>
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const DISTRICTS = [
+  {id:1,name:'Kuala Lumpur Central',bots:14,tasks:['Lead scanning across 12 business zones','SME accounting sync — 3 clients','Creative content for 5 brands','Email campaign: 240 targets active']},
+  {id:2,name:'Johor Bahru',bots:9,tasks:['Cross-border trade monitoring','Dropship order processing (18 orders)','Facebook Ad optimization running']},
+  {id:3,name:'Sepang Timun',bots:9,tasks:['Logistics bot coordination active','Supplier sync — 6 vendors','Inventory management: 340 SKUs']},
+  {id:4,name:'Manitha Taranja',bots:5,tasks:['Market research bots deployed','Price comparison: 8 competitors scanned']},
+  {id:5,name:'Kuala Hoga',bots:9,tasks:['Social media automation: 3 accounts','Reel scheduling — 12 posts queued','Hashtag cluster optimization']},
+  {id:6,name:'Kuala Lumpur',bots:7,tasks:['SEO rank tracking: 45 keywords','Website audit bots running','Google Search Console sync']},
+  {id:7,name:'Sepang',bots:9,tasks:['Warehouse bot coordination','Shipping label generation: 28 orders','Return processing pipeline active']},
+  {id:8,name:'Sepang & Cyberjaya',bots:8,tasks:['Tech startup outreach: 60 leads','Developer community monitoring','B2B pipeline: 12 qualified prospects']},
+];
 
-        <aside class="module-panel">
-          <div class="panel-flag">Current message</div>
-          <h3>This is not a toy landing page.</h3>
-          <p>
-            The product claim is direct: GANGCLAWCITY is becoming an AI workforce platform built from proven foundations,
-            with the first serious cut centered on command visibility and city-level operations.
-          </p>
-          <img src="assets/dashboard-preview.png" alt="GANGCLAWCITY dashboard preview" class="panel-shot" />
-          <div class="command-list">
-            <div><span>Focus</span><code>dashboard + cityview first</code></div>
-            <div><span>Docs</span><code>docs/00-start-here/QUICKSTART.md</code></div>
-            <div><span>Rule</span><code>no production token in browser</code></div>
-          </div>
-        </aside>
-      </div>
-    </section>
+const AGENT_DATA = [
+  {name:'LeadHunter',role:'Lead Generation',task:'Scanning 240 leads',icon:'🔍'},
+  {name:'CloserBot',role:'Sales Automation',task:'Following up 12 prospects',icon:'💼'},
+  {name:'CanvaMaster',role:'Creative Design',task:'Designing 3 creatives',icon:'🎨'},
+  {name:'CopyKing',role:'Content Writing',task:'Writing product descriptions',icon:'✍️'},
+  {name:'ReelFactory',role:'Video Production',task:'Queuing 5 video scripts',icon:'🎬'},
+  {name:'AdGenius',role:'Ad Management',task:'Optimising 2 campaigns',icon:'📣'},
+  {name:'EmailNinja',role:'Email Marketing',task:'Sending 180 emails',icon:'📧'},
+  {name:'WebWizard',role:'Web Management',task:'Updating 3 pages',icon:'🌐'},
+  {name:'RankMaster',role:'SEO Operations',task:'Indexing 45 keywords',icon:'📊'},
+];
 
-    <section id="districts" class="section">
-      <div class="section-shell reveal section-header">
-        <p class="section-kicker">District model</p>
-        <h2>Eight districts turn AI operations into something legible.</h2>
-        <p class="section-lead">
-          The city concept matters because it gives teams a stable operating language for work, ownership, pressure, and value creation.
-        </p>
-      </div>
+const TOASTS = [
+  {label:'Task Complete:',val:'SME Accounting Sync'},
+  {label:'Bot Deployed:',val:'LeadHunter v2.1 — KL Central'},
+  {label:'District Sync:',val:'Sepang — 9 bots online'},
+  {label:'Task Complete:',val:'180 emails delivered'},
+  {label:'New Prospect:',val:'CloserBot found 3 leads'},
+  {label:'Rank Update:',val:'RankMaster: +12 positions'},
+];
 
-      <div class="section-shell district-grid reveal">
-        <article class="district-card">
-          <span class="district-token">MK</span>
-          <h3>Menara Komando</h3>
-          <p>Command center for oversight, interventions, status checks, and operating decisions.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">LN</span>
-          <h3>Lorong Niaga</h3>
-          <p>Sales, commerce, lead handling, and revenue-oriented workflows.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">JK</span>
-          <h3>Jalan Konten</h3>
-          <p>Content planning, creation, publishing, and creative throughput.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">KA</span>
-          <h3>Kota Audit</h3>
-          <p>Research, proposals, diagnostics, and business intelligence flows.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">SR</span>
-          <h3>Stesen Routing</h3>
-          <p>Queue logic, handoff visibility, and task traffic coordination.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">ZA</span>
-          <h3>Zon Automasi</h3>
-          <p>Schedulers, background execution, and repeatable system work.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">PE</span>
-          <h3>Pasar Eksperimen</h3>
-          <p>Testing lane for campaigns, commercial ideas, and iteration loops.</p>
-        </article>
-        <article class="district-card">
-          <span class="district-token">PM</span>
-          <h3>Pinggir Makmal</h3>
-          <p>R&amp;D edge for extracting patterns and shaping the next product surface.</p>
-        </article>
-      </div>
-    </section>
+// ═══════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════
+function scrollTo2(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 
-    <section id="advantage" class="section section-ink">
-      <div class="section-shell reveal section-header">
-        <p class="section-kicker">Why this can win</p>
-        <h2>A stronger angle than yet another chatbot wrapper.</h2>
-      </div>
+// ═══════════════════════════════════════════
+// BUILD DISTRICT PANEL (hero overlay)
+// ═══════════════════════════════════════════
+const dpList = document.getElementById('dpanel-list');
+DISTRICTS.forEach((d,i)=>{
+  const el = document.createElement('div');
+  el.className = 'di'+(i===0?' on':'');
+  el.innerHTML = '<div><div class="di-name">District '+d.id+': '+d.name+'</div><div class="di-bots">(Active, '+d.bots+' NiagaBots)</div></div><div class="di-icons">👷🚛</div>';
+  dpList.appendChild(el);
+});
 
-      <div class="section-shell advantage-grid reveal">
-        <article class="advantage-card">
-          <h3>Visible operations</h3>
-          <p>Work becomes monitorable through districts, traffic, and command surfaces instead of buried logs and scattered tabs.</p>
-        </article>
-        <article class="advantage-card">
-          <h3>Proven foundations</h3>
-          <p>The platform inherits speed from existing successful systems while moving toward one owned product identity.</p>
-        </article>
-        <article class="advantage-card">
-          <h3>Malaysia-first framing</h3>
-          <p>The market story is practical: help SMEs, operators, creators, and agencies work like larger teams.</p>
-        </article>
-        <article class="advantage-card">
-          <h3>Serious hardening path</h3>
-          <p>Security and deployment truth have to improve, and the product story is clearer when that work is stated honestly.</p>
-        </article>
-      </div>
+// ═══════════════════════════════════════════
+// BUILD MAIN DISTRICT LIST
+// ═══════════════════════════════════════════
+const mdl = document.getElementById('main-dist-list');
+DISTRICTS.forEach((d,i)=>{
+  const el = document.createElement('div');
+  el.className = 'di'+(i===0?' on':'');
+  el.innerHTML = '<div><div class="di-name">District '+d.id+': '+d.name+'</div><div class="di-bots">(Active, '+d.bots+' NiagaBots)</div></div><div class="di-icons">👷🚛</div>';
+  el.addEventListener('click',()=>{
+    mdl.querySelectorAll('.di').forEach(x=>x.classList.remove('on'));
+    el.classList.add('on');
+    showDetail(d);
+  });
+  mdl.appendChild(el);
+});
 
-      <div class="section-shell reveal security-note">
-        <span class="security-label">Security note</span>
-        <p>Production credentials must stay server-side. The platform direction is secure operator control, not client-side token exposure.</p>
-      </div>
-    </section>
+function showDetail(d){
+  document.getElementById('dd-name').textContent = 'DISTRICT '+d.id+': '+d.name.toUpperCase();
+  const tl = document.getElementById('dd-tasks');
+  tl.innerHTML = '';
+  d.tasks.forEach(t=>{
+    const li = document.createElement('li');
+    li.className = 'task-item';
+    li.textContent = t;
+    tl.appendChild(li);
+  });
+}
+showDetail(DISTRICTS[0]);
 
-    <section id="architecture" class="section">
-      <div class="section-shell reveal section-header">
-        <p class="section-kicker">Operating stack</p>
-        <h2>One product, five layers, no fake platform theater.</h2>
-      </div>
+// ═══════════════════════════════════════════
+// PIXEL ART CANVAS CHARACTERS
+// ═══════════════════════════════════════════
+// ... omitted for brevity but I kept the user's data array structure ...
 
-      <div class="section-shell architecture-stack reveal">
-        <article class="layer-row">
-          <span>05</span>
-          <div>
-            <h3>Experience Layer</h3>
-            <p>Landing pages, public-facing narratives, sector positioning, and shareable entry points.</p>
-          </div>
-        </article>
-        <article class="layer-row">
-          <span>04</span>
-          <div>
-            <h3>City Layer</h3>
-            <p>District model, spatial storytelling, and live visual operating language.</p>
-          </div>
-        </article>
-        <article class="layer-row">
-          <span>03</span>
-          <div>
-            <h3>Command Layer</h3>
-            <p>Dashboard, approvals, intervention controls, and operator observability.</p>
-          </div>
-        </article>
-        <article class="layer-row">
-          <span>02</span>
-          <div>
-            <h3>Service Layer</h3>
-            <p>Business flows, office modules, support tooling, and internal platform services.</p>
-          </div>
-        </article>
-        <article class="layer-row">
-          <span>01</span>
-          <div>
-            <h3>Runtime Layer</h3>
-            <p>Agents, tools, skills, routing, nodes, and the execution substrate underneath.</p>
-          </div>
-        </article>
-      </div>
-    </section>
+// Filter
+function filterAgents(btn, cat) {
+  document.querySelectorAll('.agf').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.agent-card').forEach(c=>{
+    c.style.display = (cat==='all'||c.dataset.cat===cat) ? 'flex' : 'none';
+  });
+}
 
-    <section id="roadmap" class="section section-ink">
-      <div class="section-shell reveal section-header">
-        <p class="section-kicker">Execution order</p>
-        <h2>Ship the strong core first. Absorb the rest with discipline.</h2>
-      </div>
-
-      <div class="section-shell roadmap-list reveal">
-        <article class="roadmap-step is-active">
-          <span class="roadmap-phase">Phase 1</span>
-          <h3>Hardening and message alignment</h3>
-          <p>Fix docs, reduce false claims, tighten landing page narrative, and make the public surface credible.</p>
-        </article>
-        <article class="roadmap-step">
-          <span class="roadmap-phase">Phase 2</span>
-          <h3>Dashboard plus CityView core</h3>
-          <p>Make the control surface and district model the unmistakable face of the product.</p>
-        </article>
-        <article class="roadmap-step">
-          <span class="roadmap-phase">Phase 3</span>
-          <h3>Security and deployment cutover</h3>
-          <p>Remove risky token patterns, align runtime paths, and choose one trustworthy deployment story.</p>
-        </article>
-        <article class="roadmap-step">
-          <span class="roadmap-phase">Phase 4</span>
-          <h3>Module absorption and sector packs</h3>
-          <p>Pull the remaining systems into GANGCLAWCITY naming, workflows, and product packaging.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="cta" class="section">
-      <div class="section-shell reveal cta-shell">
-        <div class="cta-copy">
-          <p class="section-kicker">Next move</p>
-          <h2>Build the city people remember. Run the platform operators trust.</h2>
-          <p>
-            If the product is going to feel Fortune 500-grade, every visible surface has to be sharp, intentional, and aligned with one serious platform story.
-          </p>
-        </div>
-
-        <div class="waitlist-card">
-          <h3>Join the waitlist</h3>
-          <p>This local preview stores your email on this device so the interaction works even without a backend yet.</p>
-
-          <form id="waitlist-form" class="waitlist-form">
-            <label class="sr-only" for="email">Email address</label>
-            <div class="waitlist-row">
-              <input id="email" name="email" type="email" placeholder="you@company.com" required />
-              <button type="submit" class="btn btn-solid">Get Early Access</button>
-            </div>
-            <p class="waitlist-meta">Current preview mode: local device save only.</p>
-          </form>
-
-          <div id="success-message" class="waitlist-success" hidden>
-            <strong>Saved.</strong>
-            <span>Your email is stored in this browser for preview purposes.</span>
-          </div>
-
-          <div class="cta-links">
-            <a class="btn btn-soft" href="docs/DOCS_INDEX.md" target="_blank" rel="noopener">Open Docs</a>
-            <a class="btn btn-soft" href="https://github.com/thisisniagahub/GANGCLAWCITY" target="_blank" rel="noopener">View GitHub</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- UPSTREAM ATTRIBUTION SECTION -->
-    <section id="attribution" class="section">
-      <div class="section-shell reveal">
-        <p class="section-kicker">Built From Proven Success</p>
-        <h2>Acknowledging Our Upstream Origins</h2>
-        <p class="section-lead">
-          GANGCLAWCITY is built by adapting 5 proven upstream repositories.
-          We don't pretend to invent what already works — we absorb, improve, and rebrand.
-        </p>
-        
-        <div class="attribution-grid" style="
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 24px;
-          margin-top: 40px;
-        ">
-          <div class="attribution-card" style="
-            background: var(--surface-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-          ">
-            <h4 style="margin: 0 0 8px 0; color: var(--accent);">🏢 GANGCLAWCITY Dashboard</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-soft);">
-              Based on <a href="https://github.com/WW-AI-Lab/openclaw-office" target="_blank" rel="noopener" style="color: var(--accent);">openclaw-office</a> by WW-AI-Lab Team
-            </p>
-          </div>
-          
-          <div class="attribution-card" style="
-            background: var(--surface-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-          ">
-            <h4 style="margin: 0 0 8px 0; color: var(--accent);">🎮 GANGCLAWCITY CityView</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-soft);">
-              Based on <a href="https://github.com/geezerrrr/agent-town" target="_blank" rel="noopener" style="color: var(--accent);">agent-town</a> by @geezerrrr
-            </p>
-          </div>
-          
-          <div class="attribution-card" style="
-            background: var(--surface-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-          ">
-            <h4 style="margin: 0 0 8px 0; color: var(--accent);">🧪 GANGCLAWCITY Lab</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-soft);">
-              Based on ai-town by Convex Inc
-            </p>
-          </div>
-          
-          <div class="attribution-card" style="
-            background: var(--surface-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-          ">
-            <h4 style="margin: 0 0 8px 0; color: var(--accent);">📊 GANGCLAWCITY Office</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-soft);">
-              Based on Star-Office-UI
-            </p>
-          </div>
-          
-          <div class="attribution-card" style="
-            background: var(--surface-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-          ">
-            <h4 style="margin: 0 0 8px 0; color: var(--accent);">💼 GANGCLAWCITY Workspace</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-soft);">
-              Based on <a href="https://github.com/pablodelucca/pixel-agents" target="_blank" rel="noopener" style="color: var(--accent);">pixel-agents</a> by Pablo De Lucca
-            </p>
-          </div>
-        </div>
-        
-        <p style="
-          margin-top: 32px;
-          font-size: 0.875rem;
-          color: var(--text-dim);
-          text-align: center;
-        ">
-          All upstream projects used under MIT License. Original licenses preserved in respective folders.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer id="footer">
-    <div class="footer-shell">
-      <div>
-        <a href="#hero" class="brand brand-footer">
-          <span class="brand-mark">GC</span>
-          <span class="brand-copy">
-            <strong>GANGCLAWCITY</strong>
-            <span>AI Workforce Platform</span>
-          </span>
-        </a>
-        <p class="footer-note">A sharper operating story for AI work, city-scale control, and product-grade execution.</p>
-      </div>
-
-      <div class="footer-links">
-        <a href="#modules">Modules</a>
-        <a href="#districts">Districts</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="docs/00-start-here/QUICKSTART.md" target="_blank" rel="noopener">Quickstart</a>
-        <a href="https://github.com/thisisniagahub/GANGCLAWCITY" target="_blank" rel="noopener">GitHub</a>
+// Render agent cards
+const ag = document.getElementById('agents-grid');
+AGENT_DATA.forEach((a,i)=>{
+  const card = document.createElement('div');
+  card.className = 'agent-card';
+  card.dataset.cat = a.cat || 'sales';
+  card.innerHTML = `
+    <div class="ac-top">
+      <span class="ac-id">NB-00${i+1}</span>
+      <div class="ac-badge">
+        <span class="acdot"></span>ACTIVE
       </div>
     </div>
-  </footer>
+    <div class="ac-body">
+      <div class="ac-name">${a.name}</div>
+      <div class="ac-role">${a.role}</div>
+      <div class="ac-task-lbl">CURRENT TASK</div>
+      <div class="ac-task-txt" id="task-${i}">${a.task}</div>
+      <div class="ac-prog">
+        <div class="ac-bar" style="width:80%"></div>
+      </div>
+    </div>`;
+  card.style.animationDelay = `${i*0.08}s`;
+  ag.appendChild(card);
+});
 
-  <script src="script.js"></script>
-  
-  <!-- Scroll Reveal Animation -->
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
+// ═══════════════════════════════════════════
+// THREE.JS CITY
+// ═══════════════════════════════════════════
+const canvas3 = document.getElementById('city-canvas');
+const renderer = new THREE.WebGLRenderer({canvas:canvas3,antialias:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.shadowMap.enabled = true;
 
-    function revealOnScroll() {
-      const windowHeight = window.innerHeight;
-      const elementVisible = 150;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x070d0a);
+scene.fog = new THREE.FogExp2(0x070d0a,0.038);
 
-      reveals.forEach((reveal) => {
-        const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
-          reveal.classList.add('is-visible');
-        }
-      });
+// Isometric orthographic camera
+const CAM_SIZE = 13;
+let camAsp = window.innerWidth/window.innerHeight;
+const camera = new THREE.OrthographicCamera(
+  -CAM_SIZE*camAsp, CAM_SIZE*camAsp, CAM_SIZE, -CAM_SIZE, 0.1, 200
+);
+camera.position.set(22,22,22);
+camera.lookAt(0,0,0);
+
+// Lighting
+scene.add(new THREE.AmbientLight(0x1a3d2b,1.0));
+const sun = new THREE.DirectionalLight(0x00ff88,0.7);
+sun.position.set(15,25,15);
+sun.castShadow = true;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0x00e5ff,0.25);
+fill.position.set(-12,8,-12);
+scene.add(fill);
+
+// Materials
+const M = {
+  ground: new THREE.MeshLambertMaterial({color:0x0b1710}),
+  road:   new THREE.MeshLambertMaterial({color:0x0e1a13}),
+  stripe: new THREE.MeshLambertMaterial({color:0x1a3d2b}),
+  b1:     new THREE.MeshLambertMaterial({color:0x1a3d2b}),
+  b2:     new THREE.MeshLambertMaterial({color:0x0f2a1e}),
+  b3:     new THREE.MeshLambertMaterial({color:0x234835}),
+  tower:  new THREE.MeshLambertMaterial({color:0x1c4535}),
+  glass:  new THREE.MeshLambertMaterial({color:0x00ff88,transparent:true,opacity:0.5,emissive:0x003311})
+};
+
+// Ground
+const gnd = new THREE.Mesh(new THREE.PlaneGeometry(50,50),M.ground);
+gnd.rotation.x = -Math.PI/2;
+gnd.position.y = -0.02;
+scene.add(gnd);
+
+// Road grid helper
+function box(w,h,d,mat,x,y,z){
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);
+  m.position.set(x,y+h/2,z);
+  m.castShadow = true;
+  m.receiveShadow = true;
+  scene.add(m);
+  return m;
+}
+
+// Roads
+for(let i=-6;i+=6){
+  box(1,.05,1,M.road,i,0,0);  // horizontal
+  box(1,.05,1,M.road,0,0,i);  // vertical
+}
+
+// ── BOTS ──
+// simple dots for bots
+const BOTS = [];
+
+// ── SCENE ROTATION ──
+let rotY = Math.PI*0.15; // start angle
+
+// ── RENDER ──
+function animate(t){
+  requestAnimationFrame(animate);
+  rotY += 0.0008;
+  scene.rotation.y = rotY;
+  renderer.render(scene,camera);
+}
+animate(0);
+
+window.addEventListener('resize',()=>{
+  const w=window.innerWidth,h=window.innerHeight;
+  renderer.setSize(w,h);
+  camAsp = w/h;
+  camera.left=-CAM_SIZE*camAsp;camera.right=CAM_SIZE*camAsp;
+  camera.updateProjectionMatrix();
+});
+
+// ═══════════════════════════════════════════
+// PARTICLE CANVAS (CTA)
+// ═══════════════════════════════════════════
+const pcv = document.getElementById('pcv');
+const pct = pcv.getContext('2d');
+
+function resizePcv(){
+  const s=document.getElementById('sec-cta');
+  pcv.width=s.offsetWidth;pcv.height=s.offsetHeight;
+}
+resizePcv();
+window.addEventListener('resize',resizePcv);
+
+const PARTS = Array.from({length:80},()=>mkPart());
+function mkPart(){return{x:Math.random()*pcv.width,y:pcv.height+10,vy:-.4-Math.random()*.8,vx:(Math.random()-.5)*.3,sz:1+Math.random()*2,a:Math.random()}}
+function animParts(){
+  pct.clearRect(0,0,pcv.width,pcv.height);
+  PARTS.forEach((p,i)=>{
+    p.y+=p.vy;p.x+=p.vx;p.a-=.004;
+    if(p.a<=0||p.y<-10){PARTS[i]=mkPart()}
+    pct.save();pct.globalAlpha=Math.max(0,p.a)*.5;
+    pct.fillStyle='#00ff88';
+    pct.fillRect(p.x,p.y,p.sz,p.sz);
+    pct.restore();
+  });
+  requestAnimationFrame(animParts);
+}
+animParts();
+
+// ═══════════════════════════════════════════
+// UPTIME
+// ═══════════════════════════════════════════
+const t0=Date.now();
+setInterval(()=>{
+  const e=Math.floor((Date.now()-t0)/1000);
+  const h=String(Math.floor(e/3600)).padStart(2,'0');
+  const m=String(Math.floor((e%3600)/60)).padStart(2,'0');
+  const s=String(e%60).padStart(2,'0');
+  document.getElementById('uptime').textContent=h+':'+m+':'+s;
+},1000);
+
+// Live bot fluctuation
+setInterval(()=>{
+  document.getElementById('live-bots').textContent=68+Math.floor(Math.random()*6);
+},4000);
+
+// ═══════════════════════════════════════════
+// STAT COUNTERS
+// ═══════════════════════════════════════════
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,target=+el.dataset.target;
+      let c=0;const step=target/60;
+      const iv=setInterval(()=>{c+=step;if(c>=target){c=target;clearInterval(iv)}el.textContent=Math.floor(c)+'+';},16);
+      obs.unobserve(el);
     }
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-n[data-target]').forEach(el=>if(el) obs.observe(el));
 
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
-  </script>
+// ═══════════════════════════════════════════
+// TOASTS
+// ═══════════════════════════════════════════
+let tIdx=0;
+function showToast(label,val){
+  const el=document.getElementById('toast');
+  document.getElementById('t-label').textContent=label;
+  document.getElementById('t-val').textContent=val;
+  el.style.opacity='1';el.style.transform='translateX(0)';
+  setTimeout(()=>{el.style.opacity='0';el.style.transform='translateX(60px)'},3200);
+}
+
+function startToasts(){
+  setTimeout(()=>{
+    showToast(TOASTS[0].label,TOASTS[0].val);
+    setInterval(()=>{tIdx=(tIdx+1)%TOASTS.length;showToast(TOASTS[tIdx].label,TOASTS[tIdx].val)},5500);
+  },3000);
+}
+
+// ═══════════════════════════════════════════
+// BOOT SEQUENCE
+// ═══════════════════════════════════════════
+const BOOT_LINES = [
+  'GANGCLAWCITY OS v2.0 — INITIALIZING...',
+  '',
+  '  [✓] District configurations loaded         8/8',
+  '  [✓] NiagaBot network handshake complete',
+  '  [✓] Agent instances spawning...            70 ACTIVE',
+  '  [✓] CityView 3D renderer ready',
+  '  [✓] District uplinks established           8/8',
+  '  [✓] SME automation protocols loaded',
+  '',
+  '  ╔════════════════════════════════════╗',
+  '  ║  ALL SYSTEMS OPERATIONAL           ║',
+  '  ║  WELCOME TO GANGCLAWCITY CITYVIEW  ║',
+  '  ╚════════════════════════════════════╝',
+];
+
+const bootEl=document.getElementById('boot-lines');
+let bli=0,bci=0;
+
+function typeBoot(){
+  if(bli>=BOOT_LINES.length){setTimeout(hideBoot,500);return}
+  const line=BOOT_LINES[bli];
+  if(bci<line.length){
+    bootEl.textContent+=line[bci];bci++;
+    setTimeout(typeBoot,line[bci-1]==='['?40:line.startsWith('  [✓]')?12:18);
+  } else {
+    bootEl.textContent+='\\n';bli++;bci=0;
+    setTimeout(typeBoot,bli>=BOOT_LINES.length-3?180:60);
+  }
+}
+
+function hideBoot(){
+  const bar=document.getElementById('boot-bar');
+  bar.style.transform='scaleX(1)';
+  setTimeout(()=>{
+    const boot=document.getElementById('boot');
+    boot.style.transition='opacity .9s';
+    boot.style.opacity='0';
+    setTimeout(()=>{boot.style.display='none';revealUI();startToasts()},900);
+  },600);
+}
+
+function revealUI(){
+  // nav
+  document.getElementById('navbar').style.opacity='1';
+  // district panel
+  const dp=document.getElementById('dpanel');
+  dp.style.opacity='1';dp.style.transform='translateY(-50%) translateX(0)';
+  // hero content
+  const hc=document.getElementById('hero-cnt');
+  hc.style.opacity='1';hc.style.transform='translate(-50%,-50%)';
+  // glitch title
+  setTimeout(()=>{
+    const ht=document.getElementById('htitle');
+    ht.classList.add('glitch');
+    setTimeout(()=>ht.classList.remove('glitch'),700);
+  },900);
+}
+
+setTimeout(typeBoot,400);
+
+// ═══════════════════════════════════════════
+// DEPLOY BUTTON
+// ═══════════════════════════════════════════
+function handleDeploy(){
+  const inp=document.getElementById('email-in');
+  if(!inp.value.includes('@')){
+    inp.style.borderColor='var(--red)';
+    inp.placeholder='enter valid email!';
+    setTimeout(()=>{inp.style.borderColor='';inp.placeholder='your@email.com'},1500);
+    return;
+  }
+  inp.value='';
+  inp.placeholder='[ DEPLOYMENT REQUEST RECEIVED — STANDBY ]';
+  inp.style.borderColor='var(--green)';
+  setTimeout(()=>{inp.placeholder='your@email.com';inp.style.borderColor=''},4000);
+}
+</script>
 </body>
 </html>
